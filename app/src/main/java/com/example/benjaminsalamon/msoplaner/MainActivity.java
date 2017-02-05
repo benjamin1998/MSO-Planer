@@ -90,13 +90,16 @@ public class MainActivity extends AppCompatActivity
             item.setChecked(true);
             Intent intent = new Intent(MainActivity.this, ExamsActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         } else if (id == R.id.nav_homework) {
             Intent intent = new Intent(MainActivity.this, HomeworkActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         }
         else if (id == R.id.nav_timetable) {
            Intent intent = new Intent(MainActivity.this, TimeTableActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         }
 
 

@@ -88,13 +88,16 @@ public class ExamsActivity extends AppCompatActivity
         if (id == R.id.nav_main) {
             Intent intent = new Intent(ExamsActivity.this, MainActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         } else if (id == R.id.nav_homework) {
             Intent intent = new Intent(ExamsActivity.this, HomeworkActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         }
         else if (id == R.id.nav_timetable) {
             Intent intent = new Intent(ExamsActivity.this, TimeTableActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
