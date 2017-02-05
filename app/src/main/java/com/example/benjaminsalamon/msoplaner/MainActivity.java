@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity
 
         buttonRight = (Button) findViewById(R.id.buttonRight); //initializing button variable as View
         buttonLeft = (Button) findViewById(R.id.buttonLeft);
+        buttonRight.setText("<"); //set button text
+
 
     }
 
