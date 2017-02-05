@@ -41,6 +41,10 @@ public class HomeworkActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        Menu menu = navigationView.getMenu();
+        MenuItem item = menu.findItem(R.id.nav_homework);
+        item.setChecked(true);
     }
 
     @Override
@@ -84,8 +88,8 @@ public class HomeworkActivity extends AppCompatActivity
         if (id == R.id.nav_exams) {
             Intent intent = new Intent(HomeworkActivity.this, ExamsActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_homework) {
-            Intent intent = new Intent(HomeworkActivity.this, HomeworkActivity.class);
+        } else if (id == R.id.nav_main) {
+            Intent intent = new Intent(HomeworkActivity.this, MainActivity.class);
             startActivity(intent);
         }
         else if (id == R.id.nav_timetable) {

@@ -41,6 +41,10 @@ public class ExamsActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        Menu menu = navigationView.getMenu();
+        MenuItem item = menu.findItem(R.id.nav_exams);
+        item.setChecked(true);
     }
 
     @Override

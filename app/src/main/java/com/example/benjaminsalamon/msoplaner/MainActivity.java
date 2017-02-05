@@ -1,7 +1,9 @@
 package com.example.benjaminsalamon.msoplaner;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.internal.NavigationMenu;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -39,6 +41,11 @@ public class MainActivity extends AppCompatActivity
 
         buttonRight = (Button) findViewById(R.id.buttonRight); //initializing button variable as View
         buttonLeft = (Button) findViewById(R.id.buttonLeft);
+
+        Menu menu = navigationView.getMenu();
+        MenuItem item = menu.findItem(R.id.nav_main);
+        item.setChecked(true);
+
     }
 
     @Override
@@ -79,8 +86,9 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_main) {
-            Intent intent = new Intent(MainActivity.this, MainActivity.class);
+        if (id == R.id.nav_exams) {
+            item.setChecked(true);
+            Intent intent = new Intent(MainActivity.this, ExamsActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_homework) {
             Intent intent = new Intent(MainActivity.this, HomeworkActivity.class);
