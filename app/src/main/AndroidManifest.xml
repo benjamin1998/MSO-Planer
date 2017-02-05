@@ -18,6 +18,33 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".HomeworkActivity"
+            android:label="@string/title_activity_homework"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.benjaminsalamon.msoplaner.MainActivity" />
+        </activity>
+        <activity
+            android:name=".TimeTableActivity"
+            android:label="@string/title_activity_time_table"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.benjaminsalamon.msoplaner.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ExamsActivity"
+            android:label="@string/title_activity_exams"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.benjaminsalamon.msoplaner.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

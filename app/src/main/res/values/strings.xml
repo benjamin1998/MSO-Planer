@@ -14,9 +14,13 @@
     <string name="timetable">Stundenplan</string>
     <string name="exams">Klausuren</string>
     <string name="homework">Hausaufgaben</string>
+    <string name="main">Home</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_homework">HomeworkActivity</string>
+    <string name="title_activity_time_table">TimeTableActivity</string>
+    <string name="title_activity_exams">ExamsActivity</string>
 
 
 </resources>
