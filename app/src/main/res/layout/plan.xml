@@ -41,7 +41,7 @@
                 android:layout_marginLeft="10dp">
 
                 <TextView
-                    android:text="Fach"
+                    android:text="@string/subject"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView11"
@@ -54,13 +54,13 @@
                     android:weightSum="1">
 
                     <TextView
-                        android:text="Raum:"
+                        android:text="@string/room_number"
                         android:layout_width="124dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView12" />
 
                     <TextView
-                        android:text="Lehrer:"
+                        android:text="@string/teacher"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView13"

@@ -28,13 +28,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:weightSum="1"
-            android:paddingBottom="10dp">
+            android:paddingBottom="10dp"
+            android:gravity="center">
 
             <Button
-                android:text=""
+                android:drawableLeft="@drawable/ic_left_arrow_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/buttonRight"
+                android:id="@+id/buttonLeft"
                 android:background="@android:color/transparent"
                 android:textAlignment="center"
                 android:textSize="24sp" />
@@ -45,14 +46,14 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/wochentag"
                 android:layout_weight="0.92"
-                android:textAlignment="center"
-                android:textSize="24sp" />
+                android:textAppearance="@android:style/TextAppearance.Material.Headline"
+                android:textAlignment="center" />
 
             <Button
-                android:text=">"
+                android:drawableRight="@drawable/ic_right_arrow_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/buttonLeft"
+                android:id="@+id/buttonRight"
                 android:background="@android:color/transparent"
                 android:textAlignment="center"
                 android:textSize="24sp" />
