@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MSO Planer.iml" filepath="$PROJECT_DIR$/MSO Planer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MSOPlaner.iml" filepath="$PROJECT_DIR$/MSOPlaner.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
