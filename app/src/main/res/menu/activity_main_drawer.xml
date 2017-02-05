@@ -6,19 +6,15 @@
         <item
             android:id="@+id/nav_camera"
             android:icon="@android:drawable/ic_menu_today"
-            android:title="Stundenplan" />
+            android:title="@string/timetable" />
         <item
         android:id="@+id/nav_gallery"
         android:icon="@android:drawable/ic_menu_edit"
-        android:title="Hausaufgaben" />
+        android:title="@string/homework" />
         <item
             android:id="@+id/nav_gallery"
             android:icon="@android:drawable/ic_menu_directions"
-            android:title="Klausuren" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@android:drawable/ic_menu_preferences"
-            android:title="Konfiguration" />
+            android:title="@string/exams" />
     </group>
 
 </menu>

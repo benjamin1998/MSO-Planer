@@ -12,6 +12,8 @@
     <string name="name_of_app">MSO Planer</string>
     <string name="version_number">Version 0.0.1</string>
     <string name="timetable">Stundenplan</string>
+    <string name="exams">Klausuren</string>
+    <string name="homework">Hausaufgaben</string>
 
 
 
