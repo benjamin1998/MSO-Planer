@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentContainer;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,6 +19,8 @@ import android.view.MenuItem;
 
 public class HomeworkActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    Fragment fragmentContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +50,8 @@ public class HomeworkActivity extends AppCompatActivity
         Menu menu = navigationView.getMenu();
         MenuItem item = menu.findItem(R.id.nav_homework);
         item.setChecked(true);
+
+
     }
 
     @Override

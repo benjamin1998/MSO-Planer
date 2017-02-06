@@ -1,11 +1,11 @@
 package com.example.benjaminsalamon.msoplaner;
 
-import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.internal.NavigationMenu;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity
         Menu menu = navigationView.getMenu();
         MenuItem item = menu.findItem(R.id.nav_main);
         item.setChecked(true);
+
+        Log.i("string 'subject'", getResources().getString(R.string.subject));
 
     }
 

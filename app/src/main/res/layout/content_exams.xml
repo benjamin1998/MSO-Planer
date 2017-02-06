@@ -13,4 +13,12 @@
     tools:context="com.example.benjaminsalamon.msoplaner.ExamsActivity"
     tools:showIn="@layout/app_bar_exams">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/container">
+
+    </FrameLayout>
 </RelativeLayout>

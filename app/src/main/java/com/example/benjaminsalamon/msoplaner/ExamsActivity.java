@@ -1,9 +1,14 @@
 package com.example.benjaminsalamon.msoplaner;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.BundleCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,9 +18,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.FrameLayout;
+
+import layout.BlankFragment;
 
 public class ExamsActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, BlankFragment.OnFragmentInteractionListener {
+
+    FrameLayout container;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +56,21 @@ public class ExamsActivity extends AppCompatActivity
         Menu menu = navigationView.getMenu();
         MenuItem item = menu.findItem(R.id.nav_exams);
         item.setChecked(true);
+
+        container = (FrameLayout) findViewById(R.id.container);
+        //Fragment fragment = BlankFragment.newInstance("Deutsch", "R135", "Heise", 4);
+        Fragment fragment = new BlankFragment();
+        Bundle args = new Bundle();
+        args.putInt("ARG_INDEX", 5);
+        args.putString("ARG_SUBJECT", "Deutsch");
+        args.putString("ARG_PLACE", "R135");
+        args.putString("ARG_TEACHER", "Heise");
+        fragment.setArguments(args);
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.container, fragment);
+        fragmentTransaction.commit();
+
     }
 
     @Override
@@ -103,5 +129,10 @@ public class ExamsActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }
