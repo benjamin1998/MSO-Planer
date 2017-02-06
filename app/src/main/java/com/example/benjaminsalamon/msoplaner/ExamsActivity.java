@@ -61,13 +61,13 @@ public class ExamsActivity extends AppCompatActivity
         //Fragment fragment = BlankFragment.newInstance("Deutsch", "R135", "Heise", 4);
         Fragment fragment = new BlankFragment();
         Bundle args = new Bundle();
-        args.putInt("ARG_INDEX", 5);
+        args.putInt("ARG_COLOR", 5);
         args.putString("ARG_SUBJECT", "Deutsch");
-        args.putString("ARG_PLACE", "R135");
-        args.putString("ARG_TEACHER", "Heise");
+        args.putString("ARG_DATE", "11.02.2017");
+        args.putString("ARG_NOTES", "Lehrer sind doof");
         fragment.setArguments(args);
 
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+      FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.container, fragment);
         fragmentTransaction.commit();
 

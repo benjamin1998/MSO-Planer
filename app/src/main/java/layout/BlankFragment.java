@@ -24,22 +24,22 @@ public class BlankFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_SUBJECT = "param1";
-    private static final String ARG_PLACE = "param2";
-    private static final String ARG_TEACHER = "param3";
-    private static final String ARG_INDEX = "param4";
+    private static final String ARG_DATE = "param2";
+    private static final String ARG_NOTES = "param3";
+    private static final String ARG_COLOR = "param4";
 
     // TODO: Rename and change types of parameters
     private String mSubject;
-    private String mPlace;
-    private String mTeacher;
-    private int mIndex;
+    private String mDate;
+    private String mNotes;
+    private int mColor;
 
     private OnFragmentInteractionListener mListener;
 
-    private Button index;
+    private Button color;
     private TextView subject;
-    private TextView place;
-    private TextView teacher;
+    private TextView date;
+    private TextView notes;
 
     public BlankFragment() {
         // Required empty public constructor
@@ -56,13 +56,13 @@ public class BlankFragment extends Fragment {
      * @return A new instance of fragment BlankFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static BlankFragment newInstance(String subject, String place, String teacher, int index) {
+    public static BlankFragment newInstance(String subject, String date, String notes, int color) {
         BlankFragment fragment = new BlankFragment();
         Bundle args = new Bundle();
         args.putString(ARG_SUBJECT, subject);
-        args.putString(ARG_PLACE, place);
-        args.putString(ARG_TEACHER, teacher);
-        args.putInt(ARG_INDEX, index);
+        args.putString(ARG_DATE, date);
+        args.putString(ARG_NOTES, notes);
+        args.putInt(ARG_COLOR, color);
         fragment.setArguments(args);
         return fragment;
     }
@@ -72,9 +72,9 @@ public class BlankFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mSubject = getArguments().getString(ARG_SUBJECT);
-            mPlace = getArguments().getString(ARG_PLACE);
-            mTeacher = getArguments().getString(ARG_TEACHER);
-            mIndex = getArguments().getInt(ARG_INDEX);
+            mDate = getArguments().getString(ARG_DATE);
+            mNotes = getArguments().getString(ARG_NOTES);
+            mColor = getArguments().getInt(ARG_COLOR);
         }
 
     }
@@ -85,19 +85,18 @@ public class BlankFragment extends Fragment {
         // Inflate the layout for this fragment
 
         mSubject = getArguments().getString("ARG_SUBJECT");
-        mPlace = getArguments().getString("ARG_PLACE");
-        mTeacher = getArguments().getString("ARG_TEACHER");
-        mIndex = getArguments().getInt("ARG_INDEX");
+        mDate = getArguments().getString("ARG_DATE");
+        mNotes = getArguments().getString("ARG_NOTES");
+        mColor = getArguments().getInt("ARG_COLOR");
 
-        View rootView = inflater.inflate(R.layout.fragment_blank, container, false);
-        index = (Button) rootView.findViewById(R.id.index);
-        index.setText("" + mIndex + ".");
+        View rootView = inflater.inflate(R.layout.fragment_exam, container, false);
+        color = (Button) rootView.findViewById(R.id.color);
         subject = (TextView) rootView.findViewById(R.id.subject);
         subject.setText(getResources().getString(R.string.subject) + " " + mSubject);
-        place = (TextView) rootView.findViewById(R.id.place);
-        place.setText(getResources().getString(R.string.room_number) + " " + mPlace);
-        teacher = (TextView) rootView.findViewById(R.id.teacher);
-        teacher.setText(getResources().getString(R.string.teacher) + " " + mTeacher);
+        date = (TextView) rootView.findViewById(R.id.date);
+        date.setText(getResources().getString(R.string.date) + " " + mDate);
+        notes = (TextView) rootView.findViewById(R.id.notes);
+        notes.setText(getResources().getString(R.string.notes) + " " + mNotes);
         return rootView;
     }
 

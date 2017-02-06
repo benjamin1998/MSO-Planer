@@ -13,14 +13,19 @@
     <string name="version_number">Version 0.0.1</string>
     <string name="timetable">Stundenplan</string>
     <string name="exams">Klausuren</string>
+    <string name="exam">Klausur</string>
     <string name="homework">Hausaufgaben</string>
     <string name="main">Home</string>
+    <string name="date">am:</string>
+    <string name="until">Fällig bis zum:</string>
+    <string name="notes">Notizen:</string>
+
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_homework">HomeworkActivity</string>
-    <string name="title_activity_time_table">TimeTableActivity</string>
-    <string name="title_activity_exams">ExamsActivity</string>
-
+    <string name="title_activity_homework">Hausaufgaben</string>
+    <string name="title_activity_time_table">Stundenplan</string>
+    <string name="title_activity_exams">Klausuren</string>
 
 </resources>

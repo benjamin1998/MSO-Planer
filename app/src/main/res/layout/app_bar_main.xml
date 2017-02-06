@@ -20,7 +20,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/timetable"
+    <include layout="@layout/content_main"
         android:layout_height="399dp" />
 
 </android.support.design.widget.CoordinatorLayout>
