@@ -13,12 +13,26 @@
     tools:context="com.example.benjaminsalamon.msoplaner.ExamsActivity"
     tools:showIn="@layout/app_bar_exams">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/container">
 
-    </FrameLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/container">
+
+            </FrameLayout>
+        </LinearLayout>
+    </ScrollView>
+
 </RelativeLayout>
