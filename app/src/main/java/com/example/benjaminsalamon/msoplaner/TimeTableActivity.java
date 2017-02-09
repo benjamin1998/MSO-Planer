@@ -4,6 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,8 +19,40 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+
+import static com.example.benjaminsalamon.msoplaner.R.layout.fragment_timetable_monday;
+import static com.example.benjaminsalamon.msoplaner.R.layout.fragment_timtable_friday;
+import static com.example.benjaminsalamon.msoplaner.R.layout.fragment_timtable_thursday;
+import static com.example.benjaminsalamon.msoplaner.R.layout.fragment_timtable_tuesday;
+import static com.example.benjaminsalamon.msoplaner.R.layout.fragment_timtable_wednesday;
+
 public class TimeTableActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final ArrayList<Fragment> mFragmentList = new ArrayList<>();
+        private final ArrayList<String> mFragmentTitleList = new ArrayList<>();
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+        public void addFrag(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +82,27 @@ public class TimeTableActivity extends AppCompatActivity
         Menu menu = navigationView.getMenu();
         MenuItem item = menu.findItem(R.id.nav_timetable);
         item.setChecked(true);
+
+        ViewPager viewPager = (ViewPager) findViewById(R.id.screenpager);
+        setupViewPager(viewPager);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tablayout);
+        tabLayout.setupWithViewPager(viewPager);
+
     }
+
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFrag(new fragment_timetable_monday(getResources().getColor(R.color.accent_material_light)), "MONTAG");
+        adapter.addFrag(new fragment_timtable_tuesday(getResources().getColor(R.color.ripple_material_light)), "DIENSTAG");
+        adapter.addFrag(new fragment_timtable_wednesday(getResources().getColor(R.color.button_material_dark)), "MITTWOCH");
+        adapter.addFrag(new fragment_timtable_thursday(getResources().getColor(R.color.button_material_dark)), "DONNERSTAG");
+        adapter.addFrag(new fragment_timtable_friday(getResources().getColor(R.color.button_material_dark)), "FREITAG");
+
+
+        viewPager.setAdapter(adapter);
+    }
+
+
 
     @Override
     public void onBackPressed() {
