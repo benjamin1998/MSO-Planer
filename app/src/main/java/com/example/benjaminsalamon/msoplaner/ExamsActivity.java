@@ -3,12 +3,14 @@ package com.example.benjaminsalamon.msoplaner;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.BundleCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -27,6 +29,7 @@ public class ExamsActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, BlankFragment.OnFragmentInteractionListener {
 
     FrameLayout container;
+    Logic logic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +73,11 @@ public class ExamsActivity extends AppCompatActivity
       FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.container, fragment);
         fragmentTransaction.commit();
+
+        args = getIntent().getExtras();
+        Logic p = args.getParcelable("logic");
+        Log.i("name", p.getSubjects().top().getName());
+
 
     }
 

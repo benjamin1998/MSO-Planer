@@ -1,7 +1,10 @@
 package com.example.benjaminsalamon.msoplaner;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.design.internal.NavigationMenu;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,11 +20,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import java.io.Serializable;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     Button buttonRight;
     Button buttonLeft;
+    Logic logic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +49,13 @@ public class MainActivity extends AppCompatActivity
         MenuItem item = menu.findItem(R.id.nav_main);
         item.setChecked(true);
 
-        Log.i("string 'subject'", getResources().getString(R.string.subject));
+        if(getIntent().getExtras() == null) {
+            logic = new Logic();
+        }else {
+            getIntent().getExtras().getSerializable("logic");
+        }
+
+        logic.addSubject("Deutsch", "D", "R135", "Lecture", "Heise", null);
 
     }
 
@@ -88,6 +100,18 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_exams) {
             item.setChecked(true);
             Intent intent = new Intent(MainActivity.this, ExamsActivity.class);
+            Parcelable extra = new Parcelable() {
+                @Override
+                public int describeContents() {
+                    return 0;
+                }
+
+                @Override
+                public void writeToParcel(Parcel dest, int flags) {
+                    dest.writeValue(logic);
+                }
+            };
+            intent.putExtra("logic", extra);
             startActivity(intent);
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         } else if (id == R.id.nav_homework) {

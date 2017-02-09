@@ -43,6 +43,10 @@ class Logic {
         subjects.push(s);
     }
 
+    public Stack<Subject> getSubjects() {
+        return subjects;
+    }
+
 
 
 }
