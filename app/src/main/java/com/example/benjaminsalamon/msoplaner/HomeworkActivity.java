@@ -24,8 +24,8 @@ import layout.BlankFragment;
 public class HomeworkActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
 {
-    FrameLayout container;
-    Fragment fragmentContainer;
+    private FrameLayout container;
+    private Fragment fragmentContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

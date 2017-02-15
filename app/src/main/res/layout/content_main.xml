@@ -15,15 +15,13 @@
     tools:showIn="@layout/app_bar_main"
     >
 
-    <TextView
-        android:id="@+id/textView"
+    <Button
+        android:text="new subject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_marginTop="30dp"
+        android:id="@+id/createSubject"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="80dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="64dp"
-        android:text="hallo welt" />
+        android:layout_alignParentStart="true"
+        android:onClick="createSubjectAction" />
 </RelativeLayout>

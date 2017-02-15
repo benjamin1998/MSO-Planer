@@ -20,14 +20,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import com.google.gson.Gson;
+
 import java.io.Serializable;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    Button buttonRight;
-    Button buttonLeft;
-    Logic logic;
+    private Logic logic;
+    private Button createSubject;
+    private Gson gson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +51,19 @@ public class MainActivity extends AppCompatActivity
         MenuItem item = menu.findItem(R.id.nav_main);
         item.setChecked(true);
 
+        gson = new Gson();
+
+
         if(getIntent().getExtras() == null) {
             logic = new Logic();
         }else {
-            getIntent().getExtras().getSerializable("logic");
+            String ls = getIntent().getStringExtra("logic");
+            logic = gson.fromJson(ls, Logic.class);
         }
 
-        logic.addSubject("Deutsch", "D", "R135", "Lecture", "Heise", null);
+        logic.addSubject("Deutsch", "D", "R135", "Lecture", "Heise");
+
+        createSubject = (Button) findViewById(R.id.createSubject);
 
     }
 
@@ -129,5 +137,16 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void createSubjectAction(View view) {
+
+        String ls = gson.toJson(logic);
+
+        Intent intent = new Intent(this, NewSubject.class);
+        intent.putExtra("logic", ls);
+        intent.putExtra("lastActivity", "main");
+        startActivity(intent);
+
     }
 }

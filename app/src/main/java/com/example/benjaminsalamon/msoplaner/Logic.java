@@ -16,7 +16,7 @@ class Logic {
 
     }
 
-    public void addSubject(String pName, String pAbbreviation, String pPlace, String pType, String pTeacher, Color color) {
+    public void addSubject(String pName, String pAbbreviation, String pPlace, String pType, String pTeacher) {
 
         int id;
         String name, abbreviation, place, type, teacher;
@@ -39,7 +39,7 @@ class Logic {
         if(pTeacher.equals("") || pTeacher.equals(" ")) teacher = null;
         else teacher = pTeacher;
 
-        Subject s = new Subject(id, name, abbreviation, place, type, teacher, color);
+        Subject s = new Subject(id, name, abbreviation, place, type, teacher);
         subjects.push(s);
     }
 

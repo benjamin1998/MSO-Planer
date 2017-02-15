@@ -45,6 +45,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.benjaminsalamon.msoplaner.MainActivity" />
         </activity>
+        <activity android:name=".NewSubject"></activity>
     </application>
 
 </manifest>

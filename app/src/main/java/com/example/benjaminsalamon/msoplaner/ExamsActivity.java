@@ -28,8 +28,8 @@ import layout.BlankFragment;
 public class ExamsActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, BlankFragment.OnFragmentInteractionListener {
 
-    FrameLayout container;
-    Logic logic;
+    private FrameLayout container;
+    private Logic logic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

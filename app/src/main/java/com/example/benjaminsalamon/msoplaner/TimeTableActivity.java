@@ -21,6 +21,13 @@ import android.view.MenuItem;
 
 import java.util.ArrayList;
 
+import layout.BlankFragment;
+import layout.TimetableMonday;
+import layout.TimtableFriday;
+import layout.TimtableThursday;
+import layout.TimtableTuesday;
+import layout.TimtableWednesday;
+
 import static com.example.benjaminsalamon.msoplaner.R.layout.fragment_timetable_monday;
 import static com.example.benjaminsalamon.msoplaner.R.layout.fragment_timtable_friday;
 import static com.example.benjaminsalamon.msoplaner.R.layout.fragment_timtable_thursday;
@@ -51,7 +58,7 @@ public class TimeTableActivity extends AppCompatActivity
         @Override
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
-        }
+        };
     }
 
     @Override
@@ -92,11 +99,11 @@ public class TimeTableActivity extends AppCompatActivity
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new fragment_timetable_monday(getResources().getColor(R.color.accent_material_light)), "MONTAG");
-        adapter.addFrag(new fragment_timtable_tuesday(getResources().getColor(R.color.ripple_material_light)), "DIENSTAG");
-        adapter.addFrag(new fragment_timtable_wednesday(getResources().getColor(R.color.button_material_dark)), "MITTWOCH");
-        adapter.addFrag(new fragment_timtable_thursday(getResources().getColor(R.color.button_material_dark)), "DONNERSTAG");
-        adapter.addFrag(new fragment_timtable_friday(getResources().getColor(R.color.button_material_dark)), "FREITAG");
+        adapter.addFrag(new TimetableMonday(), "MONTAG");
+        adapter.addFrag(new TimtableTuesday(), "DIENSTAG");
+        adapter.addFrag(new TimtableWednesday(), "MITTWOCH");
+        adapter.addFrag(new TimtableThursday(), "DONNERSTAG");
+        adapter.addFrag(new TimtableFriday(), "FREITAG");
 
 
         viewPager.setAdapter(adapter);

@@ -12,11 +12,11 @@ class Subject {
     private String name, abbreviation, place, type, teacher;
     private Color color;
 
-    public Subject(int pId, String pName, String pAbbreviation, String pPlace, String pType, String pTeacher, Color pColor) {
+    public Subject(int pId, String pName, String pAbbreviation, String pPlace, String pType, String pTeacher) {
 
         id = pId;
         name = pName;
-        color = pColor;
+        //color = pColor;
         abbreviation = pAbbreviation;
         place = pPlace;
         teacher = pTeacher;
