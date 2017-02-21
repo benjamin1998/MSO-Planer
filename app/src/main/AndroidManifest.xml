@@ -45,7 +45,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.benjaminsalamon.msoplaner.MainActivity" />
         </activity>
-        <activity android:name=".NewSubject"></activity>
+        <activity android:name=".NewSubject" />
+        <activity
+            android:name=".main_tabbed"
+            android:label="@string/title_activity_main_tabbed"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

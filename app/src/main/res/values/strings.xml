@@ -26,5 +26,7 @@
     <string name="title_activity_homework">Hausaufgaben</string>
     <string name="title_activity_time_table">Stundenplan</string>
     <string name="title_activity_exams">Klausuren</string>
+    <string name="title_activity_main_tabbed">main_tabbed</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 
 </resources>

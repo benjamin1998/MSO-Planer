@@ -20,6 +20,7 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
+                android:gravity="center"
                 android:dividerPadding="8dp"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -28,14 +29,15 @@
                 android:padding="10dp">
 
                 <Button
-                    android:layout_width="8dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="55dp"
                     android:id="@+id/color"
                     android:textAppearance="@android:style/TextAppearance.Material.Headline"
                     android:textSize="24sp"
                     android:background="@android:color/holo_blue_dark"
                     android:textColor="@color/cardview_light_background"
-                    android:clickable="false" />
+                    android:clickable="false"
+                    android:layout_width="55dp"
+                    android:gravity="center_vertical" />
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -48,23 +50,33 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/exercise"
-                        android:textAppearance="@android:style/TextAppearance.Material.Large" />
-
-                    <TextView
-                        android:text="@string/subject"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/subject"
-                        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
-
-                    <TextView
-                        android:text="@string/until"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/until"
-                        android:elevation="0dp"
                         android:textAppearance="@android:style/TextAppearance.Material.Medium"
-                        android:textStyle="normal|bold" />
+                        android:textStyle="normal|bold"
+                        android:textColor="@android:color/black"
+                        android:text="Hleksnlkndflksndflknsdflknsd" />
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:text="@string/subject"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/subject"
+                            android:textAppearance="@android:style/TextAppearance.Material.Small"
+                            android:layout_weight="1" />
+
+                        <TextView
+                            android:text="@string/until"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/until"
+                            android:elevation="0dp"
+                            android:textAppearance="@android:style/TextAppearance.Holo.Small"
+                            android:layout_weight="1" />
+                    </LinearLayout>
 
                 </LinearLayout>
             </LinearLayout>
