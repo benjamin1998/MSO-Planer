@@ -37,30 +37,6 @@ import static com.example.benjaminsalamon.msoplaner.R.layout.fragment_timtable_w
 public class TimeTableActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final ArrayList<Fragment> mFragmentList = new ArrayList<>();
-        private final ArrayList<String> mFragmentTitleList = new ArrayList<>();
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
-        }
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-        public void addFrag(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
-        };
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,24 +65,6 @@ public class TimeTableActivity extends AppCompatActivity
         Menu menu = navigationView.getMenu();
         MenuItem item = menu.findItem(R.id.nav_timetable);
         item.setChecked(true);
-
-        ViewPager viewPager = (ViewPager) findViewById(R.id.screenpager);
-        setupViewPager(viewPager);
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tablayout);
-        tabLayout.setupWithViewPager(viewPager);
-
-    }
-
-    private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new TimetableMonday(), "MONTAG");
-        adapter.addFrag(new TimtableTuesday(), "DIENSTAG");
-        adapter.addFrag(new TimtableWednesday(), "MITTWOCH");
-        adapter.addFrag(new TimtableThursday(), "DONNERSTAG");
-        adapter.addFrag(new TimtableFriday(), "FREITAG");
-
-
-        viewPager.setAdapter(adapter);
     }
 
 
