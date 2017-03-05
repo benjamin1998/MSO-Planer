@@ -22,7 +22,6 @@ import android.widget.Button;
 
 import com.google.gson.Gson;
 
-import java.io.Serializable;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
