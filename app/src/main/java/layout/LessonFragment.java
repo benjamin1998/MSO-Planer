@@ -16,8 +16,6 @@ public class LessonFragment extends Fragment {
 
     private int mPage;
 
-    private TextView textView;
-
     public static LessonFragment newInstance(int page) {
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE, page);
@@ -36,8 +34,8 @@ public class LessonFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_lesson, container, false);
-        textView = (TextView) view.findViewById(R.id.subject);
-        textView.setText(textView.getText() + "" + mPage);
+        TextView textView = (TextView) view.findViewById(R.id.subject);
+        textView.setText(textView.getText() + " " + mPage);
         return view;
     }
 

@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     tools:context="layout.HomeworkExercise">
 
-    <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:label="My Activity Title"
         android:orientation="vertical" android:layout_width="match_parent"
