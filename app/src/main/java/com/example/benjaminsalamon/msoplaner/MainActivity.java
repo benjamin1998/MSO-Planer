@@ -64,6 +64,9 @@ public class MainActivity extends AppCompatActivity
 
         createSubject = (Button) findViewById(R.id.createSubject);
 
+        LessonView lessonView = (LessonView) findViewById(R.id.lessonView);
+        lessonView.setTeacher("HeiseZonsHerrmanns");
+
     }
 
     @Override

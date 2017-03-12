@@ -1,7 +1,5 @@
 package com.example.benjaminsalamon.msoplaner;
 
-import android.graphics.Color;
-
 class Logic {
 
     private Stack<Subject> subjects;

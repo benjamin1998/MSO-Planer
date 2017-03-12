@@ -24,4 +24,13 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:onClick="createSubjectAction" />
+
+    <com.example.benjaminsalamon.msoplaner.LessonView
+        android:id="@+id/lessonView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/createSubject"
+        app:index="1"
+        app:teacher="zons" />
+
 </RelativeLayout>

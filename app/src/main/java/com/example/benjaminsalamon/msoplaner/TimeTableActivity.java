@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,6 +18,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import org.xmlpull.v1.XmlPullParser;
+
+import layout.LessonFragment;
 
 
 public class TimeTableActivity extends AppCompatActivity
@@ -52,7 +59,15 @@ public class TimeTableActivity extends AppCompatActivity
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
 
-        viewPager.setAdapter(new LessonFragmentPagerAdapater(getSupportFragmentManager(), TimeTableActivity.this));
+        viewPager.setAdapter(new DayFragmentPagerAdapater(getSupportFragmentManager(), TimeTableActivity.this));
+        //View page = findViewById(viewPager.getCurrentItem());
+        /*FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(viewPager.getCurrentItem(), LessonFragment.newInstance(4));
+        transaction.commit();*/
+
+        LessonView lesson = new LessonView(TimeTableActivity.this, null);
+        viewPager.addView(lesson, 200, 200);
+
         tabLayout.setupWithViewPager(viewPager);
     }
 

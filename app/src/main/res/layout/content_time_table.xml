@@ -12,12 +12,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.benjaminsalamon.msoplaner.TimeTableActivity"
-    tools:showIn="@layout/app_bar_time_table"
-    >
+    tools:showIn="@layout/app_bar_time_table">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="572dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
