@@ -1,5 +1,7 @@
 package com.example.benjaminsalamon.msoplaner;
 
+import android.content.ComponentCallbacks2;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -19,8 +21,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 
 public class MainActivity extends AppCompatActivity
@@ -110,18 +118,6 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_exams) {
             item.setChecked(true);
             Intent intent = new Intent(MainActivity.this, ExamsActivity.class);
-            Parcelable extra = new Parcelable() {
-                @Override
-                public int describeContents() {
-                    return 0;
-                }
-
-                @Override
-                public void writeToParcel(Parcel dest, int flags) {
-                    dest.writeValue(logic);
-                }
-            };
-            intent.putExtra("logic", extra);
             startActivity(intent);
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         } else if (id == R.id.nav_homework) {
@@ -151,4 +147,22 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
 
     }
+
+    @Override
+    public void onTrimMemory(final int level) {
+        if(level == ComponentCallbacks2.TRIM_MEMORY_UI_HIDDEN) {
+            Gson gson = new Gson();
+            String gsonLogic = gson.toJson(logic);
+            File file = new File(getFilesDir(), "logic");
+            try {
+                FileOutputStream outputStream = openFileOutput("logic", Context.MODE_PRIVATE);
+                outputStream.write(gsonLogic.getBytes());
+                outputStream.close();
+            } catch(IOException ex) {
+                ex.printStackTrace();
+            }
+            Toast.makeText(this, "Background!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }

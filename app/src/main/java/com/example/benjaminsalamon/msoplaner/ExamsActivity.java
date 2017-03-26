@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +19,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+
+import layout.LessonFragment;
 
 public class ExamsActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -52,6 +56,18 @@ public class ExamsActivity extends AppCompatActivity
         Menu menu = navigationView.getMenu();
         MenuItem item = menu.findItem(R.id.nav_exams);
         item.setChecked(true);
+
+        LessonFragment last = LessonFragment.newInstance(15);
+        LinearLayout ll = (LinearLayout) findViewById(R.id.content_exams);
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.disallowAddToBackStack();
+        ft.add(R.id.content_exams, LessonFragment.newInstance(12), "first");
+        ft.add(R.id.content_exams, LessonFragment.newInstance(13), "second");
+        ft.add(R.id.content_exams, LessonFragment.newInstance(14), "third");
+        ft.add(R.id.content_exams, last, "fourth");
+        //ft.hide(last);
+        ft.commit();
 
     }
 

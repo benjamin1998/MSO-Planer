@@ -38,8 +38,11 @@ public class TimeTableActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+                Intent intent = new Intent(TimeTableActivity.this, NewSubject.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
 
@@ -66,7 +69,7 @@ public class TimeTableActivity extends AppCompatActivity
         transaction.commit();*/
 
         LessonView lesson = new LessonView(TimeTableActivity.this, null);
-        viewPager.addView(lesson, 200, 200);
+        //viewPager.addView(lesson, 200, 200);
 
         tabLayout.setupWithViewPager(viewPager);
     }
