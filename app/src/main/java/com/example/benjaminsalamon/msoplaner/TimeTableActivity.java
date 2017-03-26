@@ -40,7 +40,7 @@ public class TimeTableActivity extends AppCompatActivity
             public void onClick(View view) {
                 /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();*/
-                Intent intent = new Intent(TimeTableActivity.this, NewSubject.class);
+                Intent intent = new Intent(TimeTableActivity.this, NewLessonActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
