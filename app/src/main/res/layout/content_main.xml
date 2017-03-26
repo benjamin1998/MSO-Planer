@@ -15,22 +15,48 @@
     tools:showIn="@layout/app_bar_main"
     >
 
-    <Button
-        android:text="new subject"
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Vielen Dank für das Benutzen der MSO-Planer App! Eine App von Schülern für Schüler!"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.DialogWindowTitle"
+        android:layout_below="@+id/imageView3"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="14dp" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        app:srcCompat="@drawable/title" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Viel Spaß beim Benutzen der App wünschen dir:"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:layout_marginTop="29dp"
+        android:layout_below="@+id/textView7"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        app:srcCompat="@drawable/signatures"
+        android:layout_below="@+id/textView6"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:id="@+id/createSubject"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:onClick="createSubjectAction" />
-
-    <com.example.benjaminsalamon.msoplaner.LessonView
-        android:id="@+id/lessonView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/createSubject"
-        app:index="1"
-        app:teacher="zons" />
+        android:text="Die App befindet sich noch in der Beta-Phase weshalb Probleme auftreten können."
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

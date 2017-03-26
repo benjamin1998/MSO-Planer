@@ -10,6 +10,85 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.benjaminsalamon.msoplaner.NewSubject">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:orientation="horizontal"
+            android:layout_weight="1.47">
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/done"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="31dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/place"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/abbreviation"
+            android:layout_below="@+id/abbreviation"
+            android:layout_marginTop="19dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Place" />
+
+        <EditText
+            android:id="@+id/teacher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/type"
+            android:layout_below="@+id/type"
+            android:layout_marginTop="38dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="@string/teacher" />
+
+        <EditText
+            android:id="@+id/type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/place"
+            android:layout_below="@+id/place"
+            android:layout_marginTop="45dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="type" />
+
+        <EditText
+            android:id="@+id/abbreviation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/name"
+            android:layout_below="@+id/name"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="abr" />
+    </LinearLayout>
+
     <Button
         android:text="Done"
         android:layout_width="wrap_content"
@@ -19,50 +98,6 @@
         android:id="@+id/done"
         android:onClick="doneAction" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="abr"
-        android:ems="10"
-        android:layout_below="@+id/name"
-        android:layout_alignEnd="@+id/name"
-        android:layout_marginTop="20dp"
-        android:id="@+id/abbreviation" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="type"
-        android:ems="10"
-        android:layout_below="@+id/place"
-        android:layout_alignStart="@+id/place"
-        android:layout_marginTop="45dp"
-        android:id="@+id/type" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="@string/teacher"
-        android:ems="10"
-        android:layout_marginTop="38dp"
-        android:id="@+id/teacher"
-        android:layout_below="@+id/type"
-        android:layout_alignStart="@+id/type" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Place"
-        android:ems="10"
-        android:layout_marginTop="19dp"
-        android:id="@+id/place"
-        android:layout_below="@+id/abbreviation"
-        android:layout_alignStart="@+id/abbreviation" />
-
     <Button
         android:text="Cancel"
         android:layout_width="wrap_content"
@@ -71,33 +106,5 @@
         android:onClick="cancelAction"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Name"
-        android:ems="10"
-        android:layout_marginTop="31dp"
-        android:id="@+id/name"
-        android:layout_below="@+id/done"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:text="FARBWÄHLER"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/teacher"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="57dp"
-        android:id="@+id/textView" />
-
-    <TextView
-        android:text="ICONWÄHLER"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
-        android:layout_alignStart="@+id/textView"
-        android:id="@+id/textView5" />
 
 </RelativeLayout>
