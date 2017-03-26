@@ -10,7 +10,7 @@ import layout.LessonFragment;
 public class DayFragmentPagerAdapater extends FragmentPagerAdapter {
 
     final int PAGE_COUNT = 7;
-    private String tabTitles[] = new String[] {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+    private String tabTitles[] = new String[] {"Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"};
     private Context context;
 
     public DayFragmentPagerAdapater(FragmentManager fm, Context context) {
