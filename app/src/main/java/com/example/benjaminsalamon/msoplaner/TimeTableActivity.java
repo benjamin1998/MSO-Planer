@@ -66,7 +66,7 @@ public class TimeTableActivity extends AppCompatActivity
         transaction.commit();*/
 
         LessonView lesson = new LessonView(TimeTableActivity.this, null);
-        viewPager.addView(lesson, 200, 200);
+        //viewPager.addView(lesson, 200, 200);
 
         tabLayout.setupWithViewPager(viewPager);
     }

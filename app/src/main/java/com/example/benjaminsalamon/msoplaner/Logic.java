@@ -1,5 +1,7 @@
 package com.example.benjaminsalamon.msoplaner;
 
+import java.io.File;
+
 class Logic {
 
     private Stack<Subject> subjects;

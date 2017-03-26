@@ -31,14 +31,6 @@ class Day {
 
     }
 
-    public void ejdfhs() {
-        try {
-            addLesson(null, 0, 0, 0, 0);
-        }catch (Error e) {
-
-        }
-    }
-
     public void bubbleSortLessonsByTime() {
 
         Lesson[] temp = new Lesson[lessons.getSize()];
@@ -50,6 +42,7 @@ class Day {
         boolean changed = true;
         int done = 0;
         while(changed) {
+            changed = false;
             for(int i = 0; i < (temp.length - done); i++) {
                 if(temp[i].getStartHour() > temp[i+1].getStartHour() && (temp[i].getStartHour() == temp[i+1].getStartHour() && temp[i].getStartMin() > temp[i+1].getStartHour())) {
                     Lesson mem = temp[i];
