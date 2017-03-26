@@ -49,7 +49,10 @@
         <activity
             android:name=".main_tabbed"
             android:label="@string/title_activity_main_tabbed"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".NewLessonActivity" />
+        <activity android:name=".NewExamActivity" />
+        <activity android:name=".NewTaskActivity"></activity>
     </application>
 
 </manifest>

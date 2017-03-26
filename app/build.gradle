@@ -39,7 +39,10 @@ dependencies {
     compile 'com.android.support:animated-vector-drawable:25.2.0'
     compile 'com.android.support:transition:25.2.0'
     compile 'com.android.support:support-annotations:25.2.0'
-    testCompile 'junit:junit:4.12'
     compile 'com.google.code.gson:gson:2.8.0'
+    testCompile 'junit:junit:4.12'
 }
+
+
+
 
