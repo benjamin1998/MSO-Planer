@@ -133,4 +133,5 @@ public class TimeTableActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }

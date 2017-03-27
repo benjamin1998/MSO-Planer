@@ -67,8 +67,4 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- app:srcCompat="@drawable/title" /> -->
-
-    <!-- app:srcCompat="@drawable/signatures" -->
-
 </RelativeLayout>

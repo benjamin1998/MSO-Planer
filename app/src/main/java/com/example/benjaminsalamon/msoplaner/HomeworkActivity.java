@@ -109,4 +109,9 @@ public class HomeworkActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    public void toMain2(View view) {
+        Intent intent = new Intent(this, Main2Activity.class);
+        startActivity(intent);
+    }
 }

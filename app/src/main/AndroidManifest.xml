@@ -52,7 +52,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".NewLessonActivity" />
         <activity android:name=".NewExamActivity" />
-        <activity android:name=".NewTaskActivity"></activity>
+        <activity android:name=".NewTaskActivity" />
+        <activity android:name=".Main2Activity"></activity>
     </application>
 
 </manifest>
