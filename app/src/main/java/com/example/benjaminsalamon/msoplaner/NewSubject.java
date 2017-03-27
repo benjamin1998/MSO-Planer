@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,8 +44,8 @@ public class NewSubject extends AppCompatActivity {
 //        name = (EditText) findViewById(R.id.name);
 //        abbreviation = (EditText) findViewById(R.id.abbreviation);
 //        place = (EditText) findViewById(R.id.place);
-        type = (EditText) findViewById(R.id.type);
-        teacher = (EditText) findViewById(R.id.teacher);
+//        type = (EditText) findViewById(R.id.type);
+//        teacher = (EditText) findViewById(R.id.teacher);
 
         TextWatcher editTextListener = new TextWatcher() {
             @Override
@@ -63,11 +66,31 @@ public class NewSubject extends AppCompatActivity {
                 }
 
             }
+
         };
 
         name.addTextChangedListener(editTextListener);
         abbreviation.addTextChangedListener(editTextListener);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.savemenue, menu);
+
+        return super.onCreateOptionsMenu(menu);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.activity_new_subject:
+                break;
+        }
+        return super.onOptionsItemSelected(item); //To change body of generated methods, choose Tools | Templates.
     }
 
     public void cancelAction(View view) {

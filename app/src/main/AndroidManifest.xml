@@ -47,10 +47,6 @@
         </activity>
         <activity android:name=".NewSubject" />
         <activity
-            android:name=".main_tabbed"
-            android:label="@string/title_activity_main_tabbed"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".NewLessonActivity" android:label="Neue Unterrichtsstunde" />
         <activity
             android:name=".NewExamActivity"  android:label="Neue Klausur" />
