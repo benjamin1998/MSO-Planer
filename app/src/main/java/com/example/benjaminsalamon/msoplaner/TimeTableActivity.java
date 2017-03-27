@@ -63,14 +63,6 @@ public class TimeTableActivity extends AppCompatActivity
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
 
         viewPager.setAdapter(new DayFragmentPagerAdapater(getSupportFragmentManager(), TimeTableActivity.this));
-        //View page = findViewById(viewPager.getCurrentItem());
-        /*FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(viewPager.getCurrentItem(), LessonFragment.newInstance(4));
-        transaction.commit();*/
-
-        LessonView lesson = new LessonView(TimeTableActivity.this, null);
-        //viewPager.addView(lesson, 200, 200);
-
         tabLayout.setupWithViewPager(viewPager);
     }
 

@@ -69,12 +69,6 @@ public class MainActivity extends AppCompatActivity
         }
 
         logic.addSubject("Deutsch", "D", "R135", "Lecture", "Heise");
-
-//        createSubject = (Button) findViewById(R.id.createSubject);
-//
-//        LessonView lessonView = (LessonView) findViewById(R.id.lessonView);
-//        lessonView.setTeacher("HeiseZonsHerrmanns");
-
     }
 
     @Override
