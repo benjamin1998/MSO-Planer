@@ -9,7 +9,7 @@ import layout.LessonFragment;
 
 public class DayFragmentPagerAdapater extends FragmentPagerAdapter {
 
-    final int PAGE_COUNT = 7;
+    final int PAGE_COUNT = 6;
     private String tabTitles[] = new String[] {"Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"};
     private Context context;
 
@@ -25,7 +25,7 @@ public class DayFragmentPagerAdapater extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return new DayFragment();
+        return DayFragment.newInstance(position);
     }
 
     @Override
