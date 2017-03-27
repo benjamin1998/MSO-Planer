@@ -10,101 +10,56 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.benjaminsalamon.msoplaner.NewSubject">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="36dp"
-            android:orientation="horizontal"
-            android:layout_weight="1.47">
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
             <EditText
                 android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/done"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="31dp"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
-
-            <Spinner
-                android:id="@+id/spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:ems="10"
+                android:hint="Fach"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/abbrevation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Abkürzung"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Raum"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/teacher"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Lehrer"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Typ"
+                android:inputType="textAutoComplete|textPersonName" />
+
         </LinearLayout>
-
-        <EditText
-            android:id="@+id/place"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/abbreviation"
-            android:layout_below="@+id/abbreviation"
-            android:layout_marginTop="19dp"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Place" />
-
-        <EditText
-            android:id="@+id/teacher"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/type"
-            android:layout_below="@+id/type"
-            android:layout_marginTop="38dp"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="@string/teacher" />
-
-        <EditText
-            android:id="@+id/type"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/place"
-            android:layout_below="@+id/place"
-            android:layout_marginTop="45dp"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="type" />
-
-        <EditText
-            android:id="@+id/abbreviation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/name"
-            android:layout_below="@+id/name"
-            android:layout_marginTop="20dp"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="abr" />
-    </LinearLayout>
-
-    <Button
-        android:text="Done"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/done"
-        android:onClick="doneAction" />
-
-    <Button
-        android:text="Cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/cancel"
-        android:onClick="cancelAction"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+    </ScrollView>
 
 </RelativeLayout>

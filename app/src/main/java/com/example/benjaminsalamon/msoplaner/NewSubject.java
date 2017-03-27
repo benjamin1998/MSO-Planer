@@ -34,13 +34,13 @@ public class NewSubject extends AppCompatActivity {
         String ls = getIntent().getStringExtra("logic");
         logic = gson.fromJson(ls, Logic.class);
 
-        cancel = (Button) findViewById(R.id.cancel);
-        done = (Button) findViewById(R.id.done);
-        done.setEnabled(false);
-
-        name = (EditText) findViewById(R.id.name);
-        abbreviation = (EditText) findViewById(R.id.abbreviation);
-        place = (EditText) findViewById(R.id.place);
+//        cancel = (Button) findViewById(R.id.cancel);
+//        done = (Button) findViewById(R.id.done);
+//        done.setEnabled(false);
+//
+//        name = (EditText) findViewById(R.id.name);
+//        abbreviation = (EditText) findViewById(R.id.abbreviation);
+//        place = (EditText) findViewById(R.id.place);
         type = (EditText) findViewById(R.id.type);
         teacher = (EditText) findViewById(R.id.teacher);
 
