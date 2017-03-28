@@ -6,9 +6,10 @@ class Day {
     private String name;
     private List<Lesson> lessons;
 
-    public Day(int pIndex, String pName) {
+    Day(int pIndex, String pName) {
         index = pIndex;
         name = pName;
+        lessons = new List<Lesson>();
     }
 
     public void addLesson(Subject pSubject, int pStartH, int pStartM, int pEndH, int pEndM) throws Error {
@@ -31,7 +32,7 @@ class Day {
 
     }
 
-    public void bubbleSortLessonsByTime() {
+    private void bubbleSortLessonsByTime() {
 
         Lesson[] temp = new Lesson[lessons.getSize()];
         lessons.toFirst();
@@ -53,5 +54,17 @@ class Day {
             }
         }
     }
+
+    public Lesson[] getLessons() {
+        bubbleSortLessonsByTime();
+        Lesson[] l = new Lesson[lessons.getSize()];
+        lessons.toFirst();
+        for(int i = 0; i < lessons.getSize(); i++) {
+            l[i] = lessons.getContent();
+            lessons.next();
+        }
+        return l;
+    }
+
 
 }

@@ -1,5 +1,7 @@
 package com.randerath.johannes.msoplaner;
 
+import android.support.annotation.Nullable;
+
 /**
  * Created by johannes on 02/02/2017.
  */
@@ -133,6 +135,7 @@ class List<T> {
         current = last;
     }
 
+    @Nullable
     private ListNode getPrevious() {
 
         if(hasAccess() && current != first) {

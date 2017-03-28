@@ -5,17 +5,17 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import layout.LessonFragment;
+public class DayFragmentPagerAdapater extends FragmentPagerAdapter {
 
-public class LessonFragmentPagerAdapater extends FragmentPagerAdapter {
-
-    final int PAGE_COUNT = 7;
-    private String tabTitles[] = new String[] {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+    final int PAGE_COUNT = 6;
+    private String tabTitles[] = new String[] {"Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"};
     private Context context;
+    private Logic logic;
 
-    public LessonFragmentPagerAdapater(FragmentManager fm, Context context) {
+    public DayFragmentPagerAdapater(FragmentManager fm, Context context, Logic pLogic) {
         super(fm);
         this.context = context;
+        logic = pLogic;
     }
 
     @Override
@@ -25,7 +25,7 @@ public class LessonFragmentPagerAdapater extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return LessonFragment.newInstance(position + 1);
+        return DayFragment.newInstance(position, logic);
     }
 
     @Override
