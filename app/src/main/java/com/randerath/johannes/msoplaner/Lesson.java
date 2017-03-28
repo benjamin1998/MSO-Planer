@@ -2,23 +2,24 @@ package com.randerath.johannes.msoplaner;
 
 import android.support.annotation.NonNull;
 
-/**
- * Created by johannes on 02/02/2017.
- */
-
 class Lesson {
 
     private Subject sbjct;
-    private int startHour;
+    /*private int startHour;
     private int startMin;
     private int endHour;
-    private int endMin;
+    private int endMin;*/
+    private int time;
 
-    public Lesson(@NonNull Subject pSbjct, int pStartH, int pStartM, int pEndH, int pEndM) {
+    public Lesson(@NonNull Subject pSbjct, /*int pStartH, int pStartM, int pEndH, int pEndM*/ int pTime) {
 
         sbjct = pSbjct;
 
-        if(pStartH < 24) startHour = pStartH;
+        if(pTime > 0) {
+            time = pTime;
+        }
+
+        /*if(pStartH < 24) startHour = pStartH;
         else startHour = 0;
 
         if(pStartM < 60) startMin = pStartM;
@@ -28,7 +29,7 @@ class Lesson {
         else endHour = startHour;
 
         if(pEndM < 60 && (startHour < endHour || pStartM < startMin)) endMin = pEndM;
-        else endMin = startMin;
+        else endMin = startMin;*/
 
     }
 
@@ -40,7 +41,7 @@ class Lesson {
         sbjct = pValue;
     }
 
-    public int getStartHour() {
+    /*public int getStartHour() {
         return startHour;
     }
 
@@ -77,6 +78,15 @@ class Lesson {
     public void setEndMin(int pValue) {
         if(pValue < 60 && (startHour < endHour || (startHour == endHour && startMin < pValue))) {
             endMin = pValue;
+        }
+    }*/
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int pTime) {
+        if(pTime > 0) {
+            time = pTime;
         }
     }
 

@@ -65,7 +65,7 @@ public class DayFragment extends Fragment {
             layout.setOrientation(LinearLayout.VERTICAL);
             layout.setId(View.generateViewId());
             ft = getFragmentManager().beginTransaction();
-            ft.add(layout.getId(), LessonFragment.newInstance(mDay, lesson.getSubject().getName(), lesson.getSubject().getPlace(), lesson.getSubject().getTeacher(), lesson.getStartHour(), lesson.getStartMin(), lesson.getEndHour(), lesson.getEndMin()));
+            ft.add(layout.getId(), LessonFragment.newInstance(mDay, lesson.getSubject().getName(), lesson.getSubject().getPlace(), lesson.getSubject().getTeacher(), /*lesson.getStartHour(), lesson.getStartMin(), lesson.getEndHour(), lesson.getEndMin()*/ lesson.getTime()));
             ft.commit();
             linearContainer.addView(layout);
         }

@@ -12,12 +12,31 @@ class Day {
         lessons = new List<Lesson>();
     }
 
-    public void addLesson(Subject pSubject, int pStartH, int pStartM, int pEndH, int pEndM) throws Error {
+    public void addLesson(Subject pSubject, /*int pStartH, int pStartM, int pEndH, int pEndM*/ int pTime) throws IllegalArgumentException {
 
-        Lesson newLesson = new Lesson(pSubject, pStartH, pStartM, pEndH, pEndM);
-        lessons.toFirst();
+
+        Lesson newLesson = new Lesson(pSubject, pTime);
+        lessons.toLast();
         Lesson l = lessons.getContent();
-        while(lessons.hasAccess() && !(l.getStartHour() > newLesson.getEndHour() || (l.getStartHour() == newLesson.getEndHour() && l.getStartMin() > l.getEndMin()))) {
+        if(l.getTime() < pTime) {
+            lessons.append(newLesson);
+        }else {
+            lessons.toFirst();
+            while(l.getTime() < pTime && lessons.hasAccess()) {
+                lessons.next();
+            }
+            if(l.getTime() == pTime) {
+                throw new IllegalArgumentException("existing lesson at that time!");
+            }else {
+                if(lessons.hasAccess()) {
+                    lessons.next();
+                    lessons.insert(newLesson);
+                }else {
+                    lessons.append(newLesson);
+                }
+            }
+        }
+        /*while(lessons.hasAccess() && !(l.getStartHour() > newLesson.getEndHour() || (l.getStartHour() == newLesson.getEndHour() && l.getStartMin() > l.getEndMin()))) {
             l = lessons.getContent();
             if((l.getEndHour() < newLesson.getStartHour() || (l.getEndHour() == newLesson.getStartHour() && l.getEndMin() < l.getEndHour()))) {
                 lessons.next();
@@ -27,7 +46,7 @@ class Day {
         }
         l = null;
         lessons.toFirst();
-        lessons.insert(newLesson);
+        lessons.insert(newLesson);*/
         bubbleSortLessonsByTime();
 
     }
@@ -45,13 +64,18 @@ class Day {
         while(changed) {
             changed = false;
             for(int i = 0; i < (temp.length - done); i++) {
-                if(temp[i].getStartHour() > temp[i+1].getStartHour() && (temp[i].getStartHour() == temp[i+1].getStartHour() && temp[i].getStartMin() > temp[i+1].getStartHour())) {
+                //if(temp[i].getStartHour() > temp[i+1].getStartHour() && (temp[i].getStartHour() == temp[i+1].getStartHour() && temp[i].getStartMin() > temp[i+1].getStartHour())) {
+                if(temp[i].getTime() > temp[i+1].getTime()) {
                     Lesson mem = temp[i];
                     temp[i] = temp[i+1];
                     temp[i+1] = mem;
                     changed = true;
                 }
             }
+        }
+        lessons = new List<Lesson>();
+        for (Lesson aTemp : temp) {
+            lessons.append(aTemp);
         }
     }
 
@@ -64,6 +88,14 @@ class Day {
             lessons.next();
         }
         return l;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public String getName() {
+        return name;
     }
 
 
