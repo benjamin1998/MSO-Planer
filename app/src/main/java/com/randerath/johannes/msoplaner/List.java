@@ -1,4 +1,4 @@
-package com.example.benjaminsalamon.msoplaner;
+package com.randerath.johannes.msoplaner;
 
 /**
  * Created by johannes on 02/02/2017.

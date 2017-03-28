@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.benjaminsalamon.msoplaner.R;
+import com.randerath.johannes.msoplaner.R;
 
 
 public class LessonFragment extends Fragment {

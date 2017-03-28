@@ -1,4 +1,4 @@
-package com.example.benjaminsalamon.msoplaner;
+package com.randerath.johannes.msoplaner;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

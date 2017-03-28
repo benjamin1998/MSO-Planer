@@ -1,4 +1,4 @@
-package com.example.benjaminsalamon.msoplaner;
+package com.randerath.johannes.msoplaner;
 
 import android.support.annotation.NonNull;
 
