@@ -21,6 +21,7 @@ import com.google.gson.Gson;
 
 public class TimeTableActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
     private FloatingActionMenu fam;
     private FloatingActionButton fabEdit, fabAdd;
     private Logic logic;
@@ -64,6 +65,11 @@ public class TimeTableActivity extends AppCompatActivity
         MenuItem item = menu.findItem(R.id.nav_timetable);
         item.setChecked(true);
 
+        Subject one = new Subject(0, "Mathematik", "Mathe", "R135", "Lecture", "Dohrn");
+        logic.getDay(0).addLesson(one, 1);
+        logic.getDay(0).addLesson(one, 2);
+        logic.getDay(0).addLesson(one, 3);
+
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
 
@@ -89,6 +95,8 @@ public class TimeTableActivity extends AppCompatActivity
         //handling each floating action button clicked
         fabEdit.setOnClickListener(onButtonClick());
         fabAdd.setOnClickListener(onButtonClick());
+
+
     }
 
     private View.OnClickListener onButtonClick() {

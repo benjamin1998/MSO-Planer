@@ -1,5 +1,7 @@
 package com.randerath.johannes.msoplaner;
 
+import android.util.Log;
+
 class Day {
 
     private int index;
@@ -18,7 +20,7 @@ class Day {
         Lesson newLesson = new Lesson(pSubject, pTime);
         lessons.toLast();
         Lesson l = lessons.getContent();
-        if(l.getTime() < pTime) {
+        if(!lessons.hasAccess() || l.getTime() < pTime) {
             lessons.append(newLesson);
         }else {
             lessons.toFirst();
@@ -60,7 +62,7 @@ class Day {
         }
 
         boolean changed = true;
-        int done = 0;
+        int done = 1;
         while(changed) {
             changed = false;
             for(int i = 0; i < (temp.length - done); i++) {
@@ -80,10 +82,11 @@ class Day {
     }
 
     public Lesson[] getLessons() {
-        bubbleSortLessonsByTime();
+        //bubbleSortLessonsByTime();
         Lesson[] l = new Lesson[lessons.getSize()];
         lessons.toFirst();
         for(int i = 0; i < lessons.getSize(); i++) {
+            Log.i("", "" + lessons.getContent().getClass());
             l[i] = lessons.getContent();
             lessons.next();
         }

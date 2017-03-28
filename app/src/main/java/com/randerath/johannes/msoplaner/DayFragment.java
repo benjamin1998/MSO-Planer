@@ -59,15 +59,16 @@ public class DayFragment extends Fragment {
 
         Day day = mLogic.getDay(mDay);
         Lesson[] lessons = day.getLessons();
-
-        for (Lesson lesson : lessons) {
-            layout = new LinearLayout(parent.getContext());
-            layout.setOrientation(LinearLayout.VERTICAL);
-            layout.setId(View.generateViewId());
-            ft = getFragmentManager().beginTransaction();
-            ft.add(layout.getId(), LessonFragment.newInstance(mDay, lesson.getSubject().getName(), lesson.getSubject().getPlace(), lesson.getSubject().getTeacher(), /*lesson.getStartHour(), lesson.getStartMin(), lesson.getEndHour(), lesson.getEndMin()*/ lesson.getTime()));
-            ft.commit();
-            linearContainer.addView(layout);
+        if(lessons.length > 1) {
+            for (Lesson lesson : lessons) {
+                layout = new LinearLayout(parent.getContext());
+                layout.setOrientation(LinearLayout.VERTICAL);
+                layout.setId(View.generateViewId());
+                ft = getFragmentManager().beginTransaction();
+                ft.add(layout.getId(), LessonFragment.newInstance(mDay, lesson.getSubject().getName(), lesson.getSubject().getPlace(), lesson.getSubject().getTeacher(), /*lesson.getStartHour(), lesson.getStartMin(), lesson.getEndHour(), lesson.getEndMin()*/ lesson.getTime()));
+                ft.commit();
+                linearContainer.addView(layout);
+            }
         }
 
         return parent;

@@ -56,9 +56,14 @@ class List<T> {
 
         if(pContent != null) {
             ListNode n = new ListNode(pContent, null);
-            last.setNext(n);
-            last = n;
-            if(isEmpty()) first = n;
+            if(isEmpty()) {
+                first = n;
+                last = n;
+            }
+            else {
+                last.setNext(n);
+                last = n;
+            }
         }
 
     }
@@ -149,11 +154,13 @@ class List<T> {
     public int getSize() {
 
         int i = 0;
+        ListNode mem = current;
         this.toFirst();
         while (hasAccess()) {
             i++;
             this.next();
         }
+        current = mem;
         return i;
     }
 
