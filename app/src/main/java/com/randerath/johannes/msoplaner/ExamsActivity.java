@@ -16,6 +16,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 
+import com.google.gson.Gson;
+
+import java.sql.Date;
+
 import layout.ExamFragment;
 import layout.LessonFragment;
 
@@ -31,6 +35,10 @@ public class ExamsActivity extends AppCompatActivity
         setContentView(R.layout.activity_exams);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Gson gson = new Gson();
+        String logicString = getIntent().getStringExtra("logic");
+        logic = gson.fromJson(logicString, Logic.class);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -55,7 +63,14 @@ public class ExamsActivity extends AppCompatActivity
         MenuItem item = menu.findItem(R.id.nav_exams);
         item.setChecked(true);
 
-        examContainer = (LinearLayout) findViewById(R.id.examContainer);
+        examContainer = (LinearLayout) findViewById(R.id.content_exams);
+
+        logic.getSubjects().add(new Subject(logic.getSubjects().size(), "Mathe", "m", "R135", "Lecture", "Dohrn"));
+
+        logic.addExam("29/03/2017", logic.getSubjects().peek());
+        logic.addExam("29/03/2017", logic.getSubjects().peek());
+        logic.addExam("29/03/2017", logic.getSubjects().peek());
+        logic.addExam("29/03/2017", logic.getSubjects().peek());
 
         refreshFragments();
     }
@@ -129,6 +144,7 @@ public class ExamsActivity extends AppCompatActivity
             temp.setId(View.generateViewId());
             ft = getSupportFragmentManager().beginTransaction();
             ft.add(temp.getId(), ExamFragment.newInstance(i, exams[i].getSubject().getName(), exams[i].getDate().toString()));
+            ft.commit();
             examContainer.addView(temp);
         }
     }

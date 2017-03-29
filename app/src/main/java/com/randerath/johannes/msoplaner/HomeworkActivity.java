@@ -3,6 +3,7 @@ package com.randerath.johannes.msoplaner;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,10 +13,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
+
+import com.google.gson.Gson;
+
+import layout.ExamFragment;
+import layout.TaskFragment;
 
 public class HomeworkActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
 {
+
+    LinearLayout homeworkContainer;
+    Logic logic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +33,9 @@ public class HomeworkActivity extends AppCompatActivity
         setContentView(R.layout.activity_homework);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Gson gson = new Gson();
+        logic = gson.fromJson(getIntent().getStringExtra("logic"), Logic.class);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -47,6 +60,15 @@ public class HomeworkActivity extends AppCompatActivity
         MenuItem item = menu.findItem(R.id.nav_homework);
         item.setChecked(true);
 
+        homeworkContainer = (LinearLayout) findViewById(R.id.homeworkContainer);
+
+        logic.addSubject("Mathe", "m", "R135", "lecture", "Dohrn");
+        logic.addTask(logic.getSubjects().peek(), "29/03/2017", "S. 123 Nr 4,5,6");
+        logic.addTask(logic.getSubjects().peek(), "29/03/2017", "S. 123 Nr 4,5,6");
+        logic.addTask(logic.getSubjects().peek(), "29/03/2017", "S. 123 Nr 4,5,6");
+        logic.addTask(logic.getSubjects().peek(), "29/03/2017", "S. 123 Nr 4,5,6");
+
+        refreshFragments();
     }
 
     @Override
@@ -107,8 +129,24 @@ public class HomeworkActivity extends AppCompatActivity
         return true;
     }
 
-    public void toMain2(View view) {
-        Intent intent = new Intent(this, Main2Activity.class);
-        startActivity(intent);
+    private void refreshFragments() {
+
+        homeworkContainer.removeAllViews();
+
+        LinearLayout temp;
+        FragmentTransaction ft;
+        Task[] tasks = logic.getTasks();
+
+        for(Task task : tasks) {
+            temp = new LinearLayout(HomeworkActivity.this);
+            temp.setOrientation(LinearLayout.VERTICAL);
+            temp.setId(View.generateViewId());
+            ft = getSupportFragmentManager().beginTransaction();
+            ft.add(temp.getId(), TaskFragment.newInstance(task.getSubject().getName(), task.getDueDate(), task.getDescription()));
+            ft.commit();
+            homeworkContainer.addView(temp);
+        }
+
     }
+
 }

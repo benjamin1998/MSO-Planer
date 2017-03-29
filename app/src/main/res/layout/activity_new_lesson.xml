@@ -58,14 +58,6 @@
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/addAnotherLesson"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="addAnotherLessonButton"
-                android:text="+" />
-
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

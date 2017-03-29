@@ -3,10 +3,10 @@ package com.randerath.johannes.msoplaner;
 import java.util.Date;
 
 class Exam {
-    private Date date;
+    private String date;
     private Subject subject;
 
-    Exam(Date pDate, Subject pSubject) {
+    Exam(String pDate, Subject pSubject) {
         date = pDate;
         subject = pSubject;
     }
@@ -15,7 +15,7 @@ class Exam {
         return subject;
     }
 
-    Date getDate() {
+    String getDate() {
         return date;
     }
 
