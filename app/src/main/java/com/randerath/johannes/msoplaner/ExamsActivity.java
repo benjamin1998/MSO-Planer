@@ -65,13 +65,6 @@ public class ExamsActivity extends AppCompatActivity
 
         examContainer = (LinearLayout) findViewById(R.id.content_exams);
 
-        logic.getSubjects().add(new Subject(logic.getSubjects().size(), "Mathe", "m", "R135", "Lecture", "Dohrn"));
-
-        logic.addExam("29/03/2017", logic.getSubjects().peek());
-        logic.addExam("29/03/2017", logic.getSubjects().peek());
-        logic.addExam("29/03/2017", logic.getSubjects().peek());
-        logic.addExam("29/03/2017", logic.getSubjects().peek());
-
         refreshFragments();
     }
 

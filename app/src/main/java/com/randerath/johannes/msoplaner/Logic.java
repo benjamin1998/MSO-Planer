@@ -1,6 +1,5 @@
 package com.randerath.johannes.msoplaner;
 
-import java.util.Date;
 import java.util.Stack;
 
 class Logic {
