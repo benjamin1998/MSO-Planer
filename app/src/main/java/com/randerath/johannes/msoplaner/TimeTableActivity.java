@@ -81,15 +81,17 @@ public class TimeTableActivity extends AppCompatActivity
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent;
                 if (view == fabAdd) {
-                    Intent intent = new Intent(TimeTableActivity.this, NewLessonActivity.class);
-                    startActivity(intent);
-                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                    intent = new Intent(TimeTableActivity.this, NewLessonActivity.class);
                 } else {
-                    Intent intent = new Intent(TimeTableActivity.this, NewSubject.class);
-                    startActivity(intent);
-                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                    intent = new Intent(TimeTableActivity.this, NewSubject.class);
                 }
+                Gson gson = new Gson();
+                intent.putExtra("logic", gson.toJson(logic));
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+
                 fam.close(true);
             }
         };
