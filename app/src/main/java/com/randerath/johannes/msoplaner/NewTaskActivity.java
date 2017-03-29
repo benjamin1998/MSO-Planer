@@ -17,6 +17,8 @@ import com.google.gson.Gson;
 
 public class NewTaskActivity extends AppCompatActivity {
     private Logic logic;
+    private Button cancel;
+    private Button done;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +66,7 @@ public class NewTaskActivity extends AppCompatActivity {
                 String string2 = z.getText().toString();
 
                 if (view == done) {
-                    logic.addTask(string1, string2);
+                    //logic.addTask(string1, string2);
                     intent = new Intent(NewTaskActivity.this, HomeworkActivity.class);
 
                     //Toast User Feedback

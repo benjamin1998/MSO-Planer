@@ -7,6 +7,20 @@
     tools:context="com.randerath.johannes.msoplaner.NewExamActivity">
     >
 
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="done" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="cancel" />
+
     <ScrollView
         android:layout_width="368dp"
         android:layout_height="495dp"
@@ -46,6 +60,20 @@
                 android:ems="10"
                 android:hint="Themen"
                 android:inputType="textPersonName" />
+
+            <Button
+                android:id="@+id/done"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="done" />
+
+            <Button
+                android:id="@+id/cancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@android:string/cancel" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

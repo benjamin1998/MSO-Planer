@@ -18,6 +18,8 @@ import com.google.gson.Gson;
 public class NewExamActivity extends AppCompatActivity {
 
     private Logic logic;
+    private Button cancel;
+    private Button done;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,14 +59,15 @@ public class NewExamActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent;
 
-                Spinner s = (Spinner) findViewById(R.id.sLessonSubjects);
-                String text = s.getSelectedItem().toString();
-                Subject sub1=logic.findSubject(text);
-
-                EditText t = (EditText) findViewById(R.id.tDate);
-                String string1 = t.getText().toString();
-
                 if (view == done) {
+
+                    Spinner s = (Spinner) findViewById(R.id.sLessonSubjects);
+                    String text = s.getSelectedItem().toString();
+                    Subject sub1=logic.findSubject(text);
+
+                    EditText t = (EditText) findViewById(R.id.tDate);
+                    String string1 = t.getText().toString();
+
                     logic.addExam(string1, sub1);
                     intent = new Intent(NewExamActivity.this, ExamsActivity.class);
 
