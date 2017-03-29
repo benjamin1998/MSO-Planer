@@ -55,10 +55,16 @@ public class MainActivity extends AppCompatActivity
         item.setChecked(true);
 
         gson = new Gson();
+        File file = new File(getFilesDir(), "logic");
+        file.delete();
 
         if(getIntent().getExtras() == null) {
-            String s = readStringFromFile();
-            logic = gson.fromJson(s, Logic.class);
+            if(file.exists()) {
+                String s = readStringFromFile();
+                logic = gson.fromJson(s, Logic.class);
+            }else {
+                logic = new Logic();
+            }
         }else {
             String ls = getIntent().getStringExtra("logic");
             logic = gson.fromJson(ls, Logic.class);

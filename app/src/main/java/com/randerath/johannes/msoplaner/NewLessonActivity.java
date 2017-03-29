@@ -72,11 +72,11 @@ public class NewLessonActivity extends AppCompatActivity {
                 android.R.layout.simple_spinner_item, aDropdownDays);
         p.setAdapter(adapter2);
 
-        /*done = (Button) findViewById(R.id.done);
+        done = (Button) findViewById(R.id.done);
         cancel = (Button) findViewById(R.id.cancel);
 
         done.setOnClickListener(onButtonClick());
-        cancel.setOnClickListener(onButtonClick());*/
+        cancel.setOnClickListener(onButtonClick());
 
 
     }

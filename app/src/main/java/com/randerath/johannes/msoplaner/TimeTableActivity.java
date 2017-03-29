@@ -25,6 +25,7 @@ public class TimeTableActivity extends AppCompatActivity
     private FloatingActionMenu fam;
     private FloatingActionButton fabEdit, fabAdd;
     private Logic logic;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +50,7 @@ public class TimeTableActivity extends AppCompatActivity
 
         navigationView.getMenu().findItem(R.id.nav_timetable).setChecked(true);
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
 
         DayFragmentPagerAdapater adapter = new DayFragmentPagerAdapater(getSupportFragmentManager(), TimeTableActivity.this, logic);
@@ -76,6 +77,7 @@ public class TimeTableActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 Intent intent;
+                viewPager.invalidate();
                 if (view == fabAdd) {
                     intent = new Intent(TimeTableActivity.this, NewLessonActivity.class);
                 } else {
