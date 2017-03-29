@@ -63,6 +63,9 @@ public class MainActivity extends AppCompatActivity
             String ls = getIntent().getStringExtra("logic");
             logic = gson.fromJson(ls, Logic.class);
         }
+
+        Toast.makeText(this, logic.findSubject("Mathe").getName(), Toast.LENGTH_SHORT).show();
+
     }
 
     private void writeStringToFile(String s) {

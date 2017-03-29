@@ -57,6 +57,30 @@ class Logic {
         }
     }
 
+    void removeSubject(Subject s) {
+        subjects.remove(s);
+    }
+
+    void removeExam(Exam e) {
+        exams.remove(e);
+    }
+
+    void removeTask(Task t) {
+        tasks.remove(t);
+    }
+
+    Subject findSubject(String name) {
+        Stack<Subject> temp = (Stack<Subject>) subjects.clone();
+        while (!temp.isEmpty()) {
+            if (temp.peek().getName().equals(name)) {
+                return temp.peek();
+            } else {
+                temp.pop();
+            }
+        }
+        return null;
+    }
+
     void addExam(String date, Subject subject) {
         exams.add(new Exam(date, subject));
     }
