@@ -122,7 +122,7 @@ public class NewLessonActivity extends AppCompatActivity {
 
 
                 if (view == done) {
-                    logic.getDay(indexDay).addLesson(sub1 ,intLesson);
+                    logic.getDay(indexDay).addLesson(sub1,intLesson);
                     intent = new Intent(NewLessonActivity.this, TimeTableActivity.class);
 
                     //Toast User Feedback
