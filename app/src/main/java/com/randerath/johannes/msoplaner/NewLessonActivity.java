@@ -72,6 +72,12 @@ public class NewLessonActivity extends AppCompatActivity {
                 android.R.layout.simple_spinner_item, aDropdownDays);
         p.setAdapter(adapter2);
 
+        done = (Button) findViewById(R.id.done);
+        cancel = (Button) findViewById(R.id.cancel);
+
+        done.setOnClickListener(onButtonClick());
+        cancel.setOnClickListener(onButtonClick());
+
 
     }
 
@@ -88,23 +94,25 @@ public class NewLessonActivity extends AppCompatActivity {
                 Spinner t = (Spinner) findViewById(R.id.sLessonsDay);
                 String text1 = t.getSelectedItem().toString();
 
-                if(text1 == "Montag"){
-                    indexDay = 0;
-                }
-                else if(text1 == "Dienstag"){
-                    indexDay = 1;
-                }
-                else if(text1 == "Mittwoch"){
-                    indexDay =2;
-                }
-                else if(text1 == "Donnerstag"){
-                    indexDay =3;
-                }
-                else if(text1 == "Freitag"){
-                    indexDay =4;
-                }
-                else if(text1 == "Samstag"){
-                    indexDay =5;
+                switch (text1) {
+                    case "Montag":
+                        indexDay = 0;
+                        break;
+                    case "Dienstag":
+                        indexDay = 1;
+                        break;
+                    case "Mittwoch":
+                        indexDay = 2;
+                        break;
+                    case "Donnerstag":
+                        indexDay = 3;
+                        break;
+                    case "Freitag":
+                        indexDay = 4;
+                        break;
+                    case "Samstag":
+                        indexDay = 5;
+                        break;
                 }
 
                 Spinner u = (Spinner) findViewById(R.id.sLessonsTime);
@@ -124,7 +132,7 @@ public class NewLessonActivity extends AppCompatActivity {
                     Toast toast = Toast.makeText(context, charseq1, duration);
                     toast.show();
 
-                } else if (view == cancel){
+                } else /*if (view == cancel)*/{
 
                     //Toast User Feedback
                     Context context = getApplicationContext();
@@ -136,6 +144,10 @@ public class NewLessonActivity extends AppCompatActivity {
 
                     intent = new Intent(NewLessonActivity.this, TimeTableActivity.class);
                 }
+                Gson gson = new Gson();
+                intent.putExtra("logic", gson.toJson(logic));
+                //startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         };
     }
