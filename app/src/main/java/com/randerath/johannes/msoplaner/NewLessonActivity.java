@@ -158,6 +158,12 @@ public class NewLessonActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.savemenue, menu);
 
+        done = (Button) findViewById(R.id.done);
+        cancel = (Button) findViewById(R.id.cancel);
+
+        done.setOnClickListener(onButtonClick());
+        cancel.setOnClickListener(onButtonClick());
+
         return super.onCreateOptionsMenu(menu);
 
     }
