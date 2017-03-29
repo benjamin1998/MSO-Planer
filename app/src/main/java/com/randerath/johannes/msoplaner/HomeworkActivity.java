@@ -63,12 +63,6 @@ public class HomeworkActivity extends AppCompatActivity
 
         homeworkContainer = (LinearLayout) findViewById(R.id.homeworkContainer);
 
-        logic.addSubject("Mathe", "m", "R135", "lecture", "Dohrn");
-        logic.addTask(logic.getSubjects().peek(), "20/03/2017", "S. 123 Nr 4");
-        logic.addTask(logic.getSubjects().peek(), "21/03/2017", "S. 456 Nr 5");
-        logic.addTask(logic.getSubjects().peek(), "22/03/2017", "S. 678 Nr 6");
-        logic.addTask(logic.getSubjects().peek(), "23/03/2017", "S. 789 Nr 7");
-
         refreshFragments();
     }
 

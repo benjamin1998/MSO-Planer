@@ -57,23 +57,17 @@ public class MainActivity extends AppCompatActivity
         gson = new Gson();
 
         if(getIntent().getExtras() == null) {
-            logic = new Logic();
+            String s = readStringFromFile();
+            logic = gson.fromJson(s, Logic.class);
         }else {
             String ls = getIntent().getStringExtra("logic");
             logic = gson.fromJson(ls, Logic.class);
         }
-
-        logic.addSubject("Deutsch", "D", "R135", "Lecture", "Heise");
-
-        String s = "hallo";
-        writeStringToFile(s);
-        Toast.makeText(this, readStringFromFile(), Toast.LENGTH_SHORT).show();
-
     }
 
     private void writeStringToFile(String s) {
-        File file = new File(getFilesDir(), "test");
         try {
+            new File(getFilesDir(), "logic").delete();
             FileOutputStream outputStream = openFileOutput("logic", Context.MODE_PRIVATE);
             outputStream.write(s.getBytes());
             outputStream.close();
@@ -81,6 +75,7 @@ public class MainActivity extends AppCompatActivity
             ex.printStackTrace();
         }
     }
+
 
     private String readStringFromFile() {
         File f = new File(getFilesDir(), "logic");
@@ -173,15 +168,7 @@ public class MainActivity extends AppCompatActivity
     public void onTrimMemory(final int level) {
         if(level == ComponentCallbacks2.TRIM_MEMORY_UI_HIDDEN) {
             String gsonLogic = gson.toJson(logic);
-            File file = new File(getFilesDir(), "logic");
-            try {
-                FileOutputStream outputStream = openFileOutput("logic", Context.MODE_PRIVATE);
-                outputStream.write(gsonLogic.getBytes());
-                outputStream.close();
-            } catch(IOException ex) {
-                ex.printStackTrace();
-            }
-            Toast.makeText(this, "Background!", Toast.LENGTH_SHORT).show();
+            writeStringToFile(gsonLogic);
         }
     }
 

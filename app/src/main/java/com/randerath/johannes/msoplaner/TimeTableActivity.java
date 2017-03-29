@@ -49,12 +49,6 @@ public class TimeTableActivity extends AppCompatActivity
 
         navigationView.getMenu().findItem(R.id.nav_timetable).setChecked(true);
 
-        logic.addSubject("Mathe", "Mathe", "R135", "Lecture", "Dohrn");
-        logic.getDay(0).addLesson(logic.getSubjects().peek(), 1);
-        logic.getDay(0).addLesson(logic.getSubjects().peek(), 2);
-        logic.addSubject("SoWi", "SoWi", "R035", "Lecture", "Hammes");
-        logic.getDay(0).addLesson(logic.getSubjects().peek(), 3);
-
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
 
