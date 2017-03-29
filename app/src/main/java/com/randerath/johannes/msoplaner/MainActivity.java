@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity
 
         gson = new Gson();
         File file = new File(getFilesDir(), "logic");
-        file.delete();
         if(getIntent().getExtras() == null) {
             if(file.exists()) {
                 String s = readStringFromFile();
