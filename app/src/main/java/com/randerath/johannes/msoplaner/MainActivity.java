@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity
 
         gson = new Gson();
         File file = new File(getFilesDir(), "logic");
-        file.delete();
 
         if(getIntent().getExtras() == null) {
             if(file.exists()) {
@@ -69,6 +68,13 @@ public class MainActivity extends AppCompatActivity
             String ls = getIntent().getStringExtra("logic");
             logic = gson.fromJson(ls, Logic.class);
         }
+
+        logic.addSubject("Mathe", "m", "R135", "", "Dohrn");
+        logic.addSubject("SoWi", "sw", "R035", "", "Hammes");
+        logic.addSubject("Latein", "l", "R025", "", "von Berg");
+        logic.addSubject("Info", "i", "R323", "", "Zons");
+        logic.addSubject("Englisch", "e", "R708", "", "Neuburger");
+        logic.addSubject("Deutsch", "d", "R135", "", "Heise");
 
 //        Toast.makeText(this, logic.findSubject("Mathe").getName(), Toast.LENGTH_SHORT).show();
 
