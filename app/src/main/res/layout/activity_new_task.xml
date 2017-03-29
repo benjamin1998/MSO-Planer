@@ -29,7 +29,7 @@
                 android:layout_weight="1" />
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/tHomeDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -38,13 +38,27 @@
                 android:inputType="date" />
 
             <EditText
-                android:id="@+id/editText4"
+                android:id="@+id/tNote"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="Notizen"
                 android:inputType="textPersonName" />
+
+            <Button
+                android:id="@+id/done"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="done" />
+
+            <Button
+                android:id="@+id/cancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="cancel" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
