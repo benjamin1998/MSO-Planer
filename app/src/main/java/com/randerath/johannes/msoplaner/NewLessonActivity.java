@@ -83,13 +83,10 @@ public class NewLessonActivity extends AppCompatActivity {
 
                 Spinner s = (Spinner) findViewById(R.id.sLessonSubjects);
                 String text = s.getSelectedItem().toString();
+                Subject sub1=logic.findSubject(text);
 
-                logic.getSubjects().toArray(cache);
 
-                for (logic){
-                    logic.getSubjects().toArray(
 
-                }
 
                 Spinner t = (Spinner) findViewById(R.id.sLessonsDay);
                 String text1 = t.getSelectedItem().toString();
@@ -120,34 +117,28 @@ public class NewLessonActivity extends AppCompatActivity {
 
 
                 if (view == done) {
-                    logic.getDay(indexDay).addLesson( ,intLesson);
+                    logic.getDay(indexDay).addLesson(sub1 ,intLesson);
                     intent = new Intent(NewLessonActivity.this, TimeTableActivity.class);
 
                     //Toast User Feedback
                     Context context = getApplicationContext();
-                    CharSequence text = "Dein Entwurf wurde gespeichert.";
+                    CharSequence charseq1 = "Dein Entwurf wurde gespeichert.";
                     int duration = Toast.LENGTH_SHORT;
-                    Toast toast = Toast.makeText(context, text, duration);
+                    Toast toast = Toast.makeText(context, charseq1, duration);
                     toast.show();
 
                 } else if (view == cancel){
 
                     //Toast User Feedback
                     Context context = getApplicationContext();
-                    CharSequence text = "Dein Entwurf wurde verworfen.";
+                    CharSequence charseq2 = "Dein Entwurf wurde verworfen.";
                     int duration = Toast.LENGTH_SHORT;
-                    Toast toast = Toast.makeText(context, text, duration);
+                    Toast toast = Toast.makeText(context, charseq2, duration);
                     toast.show();
 
 
                     intent = new Intent(NewLessonActivity.this, TimeTableActivity.class);
                 }
-                Gson gson = new Gson();
-                intent.putExtra("logic", gson.toJson(logic));
-                startActivity(intent);
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-
-                fam.close(true);
             }
         };
     }
