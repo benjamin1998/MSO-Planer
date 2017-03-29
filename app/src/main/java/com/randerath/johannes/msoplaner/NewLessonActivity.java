@@ -5,15 +5,18 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 
 public class NewLessonActivity extends AppCompatActivity {
 
-
+    private LinearLayout container;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_lesson);
+        container = (LinearLayout) findViewById(R.id.newLessonContainer);
     }
 
 
@@ -36,4 +39,12 @@ public class NewLessonActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public void addAnotherLessonButton(View view) {
+        LinearLayout newContainer = new LinearLayout(NewLessonActivity.this);
+        newContainer.setOrientation(LinearLayout.HORIZONTAL);
+        newContainer.setId(View.generateViewId());
+
+    }
+
 }
