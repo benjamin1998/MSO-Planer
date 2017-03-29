@@ -62,9 +62,7 @@ public class TimeTableActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        Menu menu = navigationView.getMenu();
-        MenuItem item = menu.findItem(R.id.nav_timetable);
-        item.setChecked(true);
+        navigationView.getMenu().findItem(R.id.nav_timetable).setChecked(true);
 
         logic.addSubject("Mathe", "Mathe", "R135", "Lecture", "Dohrn");
         logic.getDay(0).addLesson(logic.getSubjects().peek(), 1);
@@ -78,13 +76,6 @@ public class TimeTableActivity extends AppCompatActivity
         DayFragmentPagerAdapater adapter = new DayFragmentPagerAdapater(getSupportFragmentManager(), TimeTableActivity.this, logic);
 
         viewPager.setAdapter(adapter);
-        //View page = findViewById(viewPager.getCurrentItem());
-        /*FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(viewPager.getCurrentItem(), LessonFragment.newInstance(4));
-        transaction.commit();*/
-
-        LessonView lesson = new LessonView(TimeTableActivity.this, null);
-        //viewPager.addView(lesson, 200, 200);
 
         tabLayout.setupWithViewPager(viewPager);
 
@@ -107,12 +98,12 @@ public class TimeTableActivity extends AppCompatActivity
             public void onClick(View view) {
                 if (view == fabAdd) {
                     Intent intent = new Intent(TimeTableActivity.this, NewLessonActivity.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 } else {
                     Intent intent = new Intent(TimeTableActivity.this, NewSubject.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 }
                 fam.close(true);
             }
@@ -129,6 +120,8 @@ public class TimeTableActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        } else if(fam.isOpened()) {
+            fam.close(true);
         } else {
             super.onBackPressed();
         }
@@ -182,8 +175,5 @@ public class TimeTableActivity extends AppCompatActivity
         return true;
     }
 
-    Logic getLogic() {
-        return logic;
-    }
 
 }

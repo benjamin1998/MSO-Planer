@@ -6,6 +6,7 @@ class Logic {
 
     private Stack<Subject> subjects;
     private Day[] days;
+    private Stack<Exam> exams;
 
     Logic() {
 
@@ -51,6 +52,10 @@ class Logic {
         }else {
             throw new ArrayIndexOutOfBoundsException();
         }
+    }
+
+    Exam[] getExams() {
+        return exams.toArray(new Exam[exams.size()]);
     }
 
 }

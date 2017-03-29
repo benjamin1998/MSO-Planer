@@ -16,12 +16,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 
+import layout.ExamFragment;
 import layout.LessonFragment;
 
 public class ExamsActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private Logic logic;
+    private LinearLayout examContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,18 +55,9 @@ public class ExamsActivity extends AppCompatActivity
         MenuItem item = menu.findItem(R.id.nav_exams);
         item.setChecked(true);
 
-        /*LessonFragment last = LessonFragment.newInstance(15);
-        LinearLayout ll = (LinearLayout) findViewById(R.id.content_exams);
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.disallowAddToBackStack();
-        ft.add(R.id.content_exams, LessonFragment.newInstance(12), "first");
-        ft.add(R.id.content_exams, LessonFragment.newInstance(13), "second");
-        ft.add(R.id.content_exams, LessonFragment.newInstance(14), "third");
-        ft.add(R.id.content_exams, last, "fourth");
-        //ft.hide(last);
-        ft.commit();*/
+        examContainer = (LinearLayout) findViewById(R.id.examContainer);
 
+        refreshFragments();
     }
 
     @Override
@@ -124,4 +117,20 @@ public class ExamsActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    private void refreshFragments() {
+        examContainer.removeAllViews();
+        LinearLayout temp;
+        FragmentTransaction ft;
+        Exam[] exams = logic.getExams();
+        for(int i = 0; i < exams.length; i++) {
+            temp = new LinearLayout(ExamsActivity.this);
+            temp.setOrientation(LinearLayout.VERTICAL);
+            temp.setId(View.generateViewId());
+            ft = getSupportFragmentManager().beginTransaction();
+            ft.add(temp.getId(), ExamFragment.newInstance(i, exams[i].getSubject().getName(), exams[i].getDate().toString()));
+            examContainer.addView(temp);
+        }
+    }
+
 }
