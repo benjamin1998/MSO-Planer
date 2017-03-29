@@ -85,9 +85,6 @@ public class NewLessonActivity extends AppCompatActivity {
                 String text = s.getSelectedItem().toString();
                 Subject sub1=logic.findSubject(text);
 
-
-
-
                 Spinner t = (Spinner) findViewById(R.id.sLessonsDay);
                 String text1 = t.getSelectedItem().toString();
 
