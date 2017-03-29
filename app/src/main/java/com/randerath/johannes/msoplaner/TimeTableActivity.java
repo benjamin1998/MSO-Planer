@@ -135,17 +135,24 @@ public class TimeTableActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_main) {
-            Intent intent = new Intent(TimeTableActivity.this, MainActivity.class);
-            startActivity(intent);
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-        } else if (id == R.id.nav_homework) {
-            Intent intent = new Intent(TimeTableActivity.this, HomeworkActivity.class);
-            startActivity(intent);
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        Intent intent = null;
+
+        switch (id) {
+            case R.id.nav_exams:
+                intent = new Intent(TimeTableActivity.this, ExamsActivity.class);
+                break;
+            case R.id.nav_homework:
+                intent = new Intent(TimeTableActivity.this, HomeworkActivity.class);
+                break;
+            case R.id.nav_main:
+                intent = new Intent(TimeTableActivity.this, MainActivity.class);
+                break;
         }
-        else if (id == R.id.nav_exams) {
-            Intent intent = new Intent(TimeTableActivity.this, ExamsActivity.class);
+
+        if(intent != null) {
+            Gson gson = new Gson();
+            String logicString = gson.toJson(logic);
+            intent.putExtra("logic", logicString);
             startActivity(intent);
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -63,10 +64,10 @@ public class HomeworkActivity extends AppCompatActivity
         homeworkContainer = (LinearLayout) findViewById(R.id.homeworkContainer);
 
         logic.addSubject("Mathe", "m", "R135", "lecture", "Dohrn");
-        logic.addTask(logic.getSubjects().peek(), "29/03/2017", "S. 123 Nr 4,5,6");
-        logic.addTask(logic.getSubjects().peek(), "29/03/2017", "S. 123 Nr 4,5,6");
-        logic.addTask(logic.getSubjects().peek(), "29/03/2017", "S. 123 Nr 4,5,6");
-        logic.addTask(logic.getSubjects().peek(), "29/03/2017", "S. 123 Nr 4,5,6");
+        logic.addTask(logic.getSubjects().peek(), "20/03/2017", "S. 123 Nr 4");
+        logic.addTask(logic.getSubjects().peek(), "21/03/2017", "S. 456 Nr 5");
+        logic.addTask(logic.getSubjects().peek(), "22/03/2017", "S. 678 Nr 6");
+        logic.addTask(logic.getSubjects().peek(), "23/03/2017", "S. 789 Nr 7");
 
         refreshFragments();
     }
@@ -109,17 +110,24 @@ public class HomeworkActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_exams) {
-            Intent intent = new Intent(HomeworkActivity.this, ExamsActivity.class);
-            startActivity(intent);
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-        } else if (id == R.id.nav_main) {
-            Intent intent = new Intent(HomeworkActivity.this, MainActivity.class);
-            startActivity(intent);
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        Intent intent = null;
+
+        switch (id) {
+            case R.id.nav_exams:
+                intent = new Intent(HomeworkActivity.this, ExamsActivity.class);
+                break;
+            case R.id.nav_main:
+                intent = new Intent(HomeworkActivity.this, MainActivity.class);
+                break;
+            case R.id.nav_timetable:
+                intent = new Intent(HomeworkActivity.this, TimeTableActivity.class);
+                break;
         }
-        else if (id == R.id.nav_timetable) {
-            Intent intent = new Intent(HomeworkActivity.this, TimeTableActivity.class);
+
+        if(intent != null) {
+            Gson gson = new Gson();
+            String logicString = gson.toJson(logic);
+            intent.putExtra("logic", logicString);
             startActivity(intent);
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         }
@@ -130,7 +138,6 @@ public class HomeworkActivity extends AppCompatActivity
     }
 
     private void refreshFragments() {
-
         homeworkContainer.removeAllViews();
 
         LinearLayout temp;

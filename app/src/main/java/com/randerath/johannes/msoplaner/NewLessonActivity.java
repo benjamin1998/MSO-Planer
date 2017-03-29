@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
+import com.google.gson.Gson;
+
 import java.util.Stack;
 
 public class NewLessonActivity extends AppCompatActivity {
@@ -37,18 +39,21 @@ public class NewLessonActivity extends AppCompatActivity {
                 android.R.layout.simple_spinner_item, aDropdownHours);
         s.setAdapter(adapter);
 
+        Gson gson = new Gson();
+        logic = gson.fromJson(getIntent().getStringExtra("logic"), Logic.class);
 
-//        // Fächer für Dropdown
-//        Subject[] subjects = logic.getSubjects().toArray(new Subject[logic.getSubjects().size()]);
-//        names = new String[subjects.length];
-//        for(int i = 0; i <subjects.length; i++){
-//            names[i] = subjects[i].getName();
-//        }
-//
-//        Spinner t = (Spinner) findViewById(R.id.sLessonSubjects);
-//        ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(NewLessonActivity.this,
-//                android.R.layout.simple_spinner_item, names);
-//        t.setAdapter(adapter4);
+
+        // Fächer für Dropdown
+        Subject[] subjects = logic.getSubjects().toArray(new Subject[logic.getSubjects().size()]);
+        names = new String[subjects.length];
+        for(int i = 0; i <subjects.length; i++){
+            names[i] = subjects[i].getName();
+        }
+
+        Spinner t = (Spinner) findViewById(R.id.sLessonSubjects);
+        ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(NewLessonActivity.this,
+                android.R.layout.simple_spinner_item, names);
+        t.setAdapter(adapter4);
 
 
         //Stunden für Dropdown

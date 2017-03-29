@@ -19,7 +19,11 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import org.apache.commons.io.IOUtils;
+
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -61,6 +65,32 @@ public class MainActivity extends AppCompatActivity
 
         logic.addSubject("Deutsch", "D", "R135", "Lecture", "Heise");
 
+        String s = "hallo";
+        writeStringToFile(s);
+        Toast.makeText(this, readStringFromFile(), Toast.LENGTH_SHORT).show();
+
+    }
+
+    private void writeStringToFile(String s) {
+        File file = new File(getFilesDir(), "test");
+        try {
+            FileOutputStream outputStream = openFileOutput("logic", Context.MODE_PRIVATE);
+            outputStream.write(s.getBytes());
+            outputStream.close();
+        } catch(IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private String readStringFromFile() {
+        File f = new File(getFilesDir(), "logic");
+        try {
+            FileInputStream stream = new FileInputStream(f);
+            return IOUtils.toString(stream);
+        }catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
     }
 
     @Override
