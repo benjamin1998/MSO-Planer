@@ -1,5 +1,6 @@
 package com.randerath.johannes.msoplaner;
 
+import java.util.Date;
 import java.util.Stack;
 
 class Logic {
@@ -7,11 +8,14 @@ class Logic {
     private Stack<Subject> subjects;
     private Day[] days;
     private Stack<Exam> exams;
+    private Stack<Task> tasks;
 
     Logic() {
 
         subjects = new Stack<Subject>();
         days = new Day[] {new Day(0, "Monday"), new Day(1, "Tuesday"), new Day(2, "Wednesday"), new Day(3, "Thursday"), new Day(4, "Friday"), new Day(5, "Saturday"), new Day(6, "Sunday"), };
+        exams = new Stack<Exam>();
+        tasks = new Stack<Task>();
 
     }
 
@@ -54,8 +58,18 @@ class Logic {
         }
     }
 
+    void addExam(String date, Subject subject) {
+        exams.add(new Exam(date, subject));
+    }
+
     Exam[] getExams() {
         return exams.toArray(new Exam[exams.size()]);
+    }
+
+    void addTask(Subject subject, String dueDate, String description) { tasks.add(new Task(subject, dueDate, description));}
+
+    Task[] getTasks() {
+        return tasks.toArray(new Task[tasks.size()]);
     }
 
 }

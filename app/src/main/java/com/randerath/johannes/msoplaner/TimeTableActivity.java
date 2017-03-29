@@ -19,15 +19,12 @@ import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.google.gson.Gson;
 
-
 public class TimeTableActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private FloatingActionMenu fam;
     private FloatingActionButton fabEdit, fabAdd;
     private Logic logic;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,11 +95,6 @@ public class TimeTableActivity extends AppCompatActivity
         };
     }
 
-    private void showToast(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-    }
-
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -162,6 +154,5 @@ public class TimeTableActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
 }

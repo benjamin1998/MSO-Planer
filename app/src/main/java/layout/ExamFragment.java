@@ -42,12 +42,12 @@ public class ExamFragment extends Fragment{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_lesson, container, false);
+        View view = inflater.inflate(R.layout.fragment_exam, container, false);
         TextView subjectTV = (TextView) view.findViewById(R.id.subject);
-        TextView dateTV = (TextView) view.findViewById(R.id.date);
+        TextView dateTV = (TextView) view.findViewById(R.id.dateTV);
 
-        subjectTV.setText(subjectTV.getText() + mSubject);
-        dateTV.setText(dateTV.getText() + mDate);
+        subjectTV.setText(mSubject + " " + subjectTV.getText());
+        dateTV.setText(dateTV.getText() + " " + mDate);
 
         return view;
     }
