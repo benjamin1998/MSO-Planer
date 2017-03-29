@@ -1,5 +1,7 @@
 package com.randerath.johannes.msoplaner;
 
+import java.util.Stack;
+
 class Logic {
 
     private Stack<Subject> subjects;
@@ -17,7 +19,7 @@ class Logic {
         int id;
         String name, abbreviation, place, type, teacher;
 
-        if(!subjects.isEmpty()) id = subjects.top().getId() + 1;
+        if(!subjects.isEmpty()) id = subjects.peek().getId() + 1;
         else id = 0;
 
         if(pName.equals("") || pName.equals(" ")) name = null;

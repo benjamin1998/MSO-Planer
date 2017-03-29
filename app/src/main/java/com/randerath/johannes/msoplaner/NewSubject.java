@@ -104,7 +104,7 @@ public class NewSubject extends AppCompatActivity {
     public void doneAction(View view) {
 
         logic.addSubject(name.getText().toString(), abbreviation.getText().toString(), place.getText().toString(), type.getText().toString(), teacher.getText().toString());
-        Log.i("subject", logic.getSubjects().top().getName());
+        Log.i("subject", logic.getSubjects().peek().getName());
         back();
 
     }

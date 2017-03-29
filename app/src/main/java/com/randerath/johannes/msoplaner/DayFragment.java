@@ -58,6 +58,9 @@ public class DayFragment extends Fragment {
         LinearLayout layout;
 
         Day day = mLogic.getDay(mDay);
+        Gson gson = new Gson();
+        String logicString = gson.toJson(mLogic);
+        Log.i("logic", logicString);
         Lesson[] lessons = day.getLessons();
         if(lessons.length > 1) {
             for (Lesson lesson : lessons) {

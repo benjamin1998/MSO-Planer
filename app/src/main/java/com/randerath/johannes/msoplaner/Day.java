@@ -2,6 +2,9 @@ package com.randerath.johannes.msoplaner;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.List;
+
 class Day {
 
     private int index;
@@ -11,14 +14,13 @@ class Day {
     Day(int pIndex, String pName) {
         index = pIndex;
         name = pName;
-        lessons = new List<Lesson>();
+        lessons = new ArrayList<Lesson>();
     }
 
-    public void addLesson(Subject pSubject, /*int pStartH, int pStartM, int pEndH, int pEndM*/ int pTime) throws IllegalArgumentException {
+    /*public void addLesson(Subject pSubject, int pTime) throws IllegalArgumentException {
 
 
         Lesson newLesson = new Lesson(pSubject, pTime);
-        lessons.toLast();
         Lesson l = lessons.getContent();
         if(!lessons.hasAccess() || l.getTime() < pTime) {
             lessons.append(newLesson);
@@ -38,22 +40,28 @@ class Day {
                 }
             }
         }
-        /*while(lessons.hasAccess() && !(l.getStartHour() > newLesson.getEndHour() || (l.getStartHour() == newLesson.getEndHour() && l.getStartMin() > l.getEndMin()))) {
-            l = lessons.getContent();
-            if((l.getEndHour() < newLesson.getStartHour() || (l.getEndHour() == newLesson.getStartHour() && l.getEndMin() < l.getEndHour()))) {
-                lessons.next();
-            }else {
-                throw new Error("existing lesson at that time");
-            }
-        }
-        l = null;
-        lessons.toFirst();
-        lessons.insert(newLesson);*/
+
         bubbleSortLessonsByTime();
 
+    }*/
+
+    public void addLesson(Subject pSubject, int pTime) throws IllegalArgumentException {
+        if(lessons.isEmpty() || lessons.get(lessons.size()-1).getTime() < pTime) {
+            lessons.add(new Lesson(pSubject, pTime));
+        }else {
+            int i = 0;
+            while((i < lessons.size()) && (lessons.get(i).getTime() < pTime)) {
+                i++;
+            }
+            if(lessons.get(i).getTime() == pTime) {
+                throw new IllegalArgumentException("existing lesson at that time!");
+            }else {
+                lessons.add(i, new Lesson(pSubject, pTime));
+            }
+        }
     }
 
-    private void bubbleSortLessonsByTime() {
+    /*private void bubbleSortLessonsByTime() {
 
         Lesson[] temp = new Lesson[lessons.getSize()];
         lessons.toFirst();
@@ -79,18 +87,18 @@ class Day {
         for (Lesson aTemp : temp) {
             lessons.append(aTemp);
         }
-    }
+    }*/
 
     public Lesson[] getLessons() {
-        //bubbleSortLessonsByTime();
+        /*bubbleSortLessonsByTime();
         Lesson[] l = new Lesson[lessons.getSize()];
         lessons.toFirst();
         for(int i = 0; i < lessons.getSize(); i++) {
             Log.i("", "" + lessons.getContent().getClass());
             l[i] = lessons.getContent();
             lessons.next();
-        }
-        return l;
+        }*/
+        return lessons.toArray(new Lesson[lessons.size()]);
     }
 
     public int getIndex() {

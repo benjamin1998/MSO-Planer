@@ -4,6 +4,7 @@ import android.content.ComponentCallbacks2;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -51,7 +52,6 @@ public class MainActivity extends AppCompatActivity
         item.setChecked(true);
 
         gson = new Gson();
-
 
         if(getIntent().getExtras() == null) {
             logic = new Logic();
@@ -148,7 +148,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onTrimMemory(final int level) {
         if(level == ComponentCallbacks2.TRIM_MEMORY_UI_HIDDEN) {
-            Gson gson = new Gson();
             String gsonLogic = gson.toJson(logic);
             File file = new File(getFilesDir(), "logic");
             try {

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.widget.Toast;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -65,10 +66,11 @@ public class TimeTableActivity extends AppCompatActivity
         MenuItem item = menu.findItem(R.id.nav_timetable);
         item.setChecked(true);
 
-        Subject one = new Subject(0, "Mathematik", "Mathe", "R135", "Lecture", "Dohrn");
-        logic.getDay(0).addLesson(one, 1);
-        logic.getDay(0).addLesson(one, 2);
-        logic.getDay(0).addLesson(one, 3);
+        logic.addSubject("Mathe", "Mathe", "R135", "Lecture", "Dohrn");
+        logic.getDay(0).addLesson(logic.getSubjects().peek(), 1);
+        logic.getDay(0).addLesson(logic.getSubjects().peek(), 2);
+        logic.addSubject("SoWi", "SoWi", "R035", "Lecture", "Hammes");
+        logic.getDay(0).addLesson(logic.getSubjects().peek(), 3);
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
