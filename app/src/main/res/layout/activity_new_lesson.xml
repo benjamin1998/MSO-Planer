@@ -19,7 +19,7 @@
             android:orientation="vertical">
 
             <Spinner
-                android:id="@+id/spinner2"
+                android:id="@+id/sLessonSubjects"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
@@ -31,40 +31,32 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView8"
+                    android:id="@+id/textfield4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="von" />
+                    android:text="Schulstunde:"
+                    android:textSize="16sp" />
 
                 <Spinner
-                    android:id="@+id/spinner4"
+                    android:id="@+id/sLessonsTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/textView9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="bis" />
+                    android:text="am:"
+                    android:textSize="16sp" />
 
                 <Spinner
-                    android:id="@+id/spinner3"
+                    android:id="@+id/sLessonsDay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
             </LinearLayout>
-
-            <Button
-                android:id="@+id/addAnotherLesson"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="addAnotherLessonButton"
-                android:text="+" />
 
         </LinearLayout>
     </ScrollView>
