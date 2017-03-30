@@ -1,5 +1,6 @@
 package com.randerath.johannes.msoplaner;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -37,17 +40,19 @@ public class NewSubject extends AppCompatActivity {
         String ls = getIntent().getStringExtra("logic");
         logic = gson.fromJson(ls, Logic.class);
 
-//        cancel = (Button) findViewById(R.id.cancel);
-//        done = (Button) findViewById(R.id.done);
-//        done.setEnabled(false);
-//
-//        name = (EditText) findViewById(R.id.name);
-//        abbreviation = (EditText) findViewById(R.id.abbreviation);
-//        place = (EditText) findViewById(R.id.place);
-//        type = (EditText) findViewById(R.id.type);
-//        teacher = (EditText) findViewById(R.id.teacher);
+        cancel = (Button) findViewById(R.id.cancel);
+        done = (Button) findViewById(R.id.done);
+        done.setEnabled(true);
+        done.setOnClickListener(onButtonClick());
+        cancel.setOnClickListener(onButtonClick());
 
-        TextWatcher editTextListener = new TextWatcher() {
+        name = (EditText) findViewById(R.id.name);
+        abbreviation = (EditText) findViewById(R.id.abbreviation);
+        place = (EditText) findViewById(R.id.place);
+        type = (EditText) findViewById(R.id.type);
+        teacher = (EditText) findViewById(R.id.teacher);
+
+        /*TextWatcher editTextListener = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -70,8 +75,45 @@ public class NewSubject extends AppCompatActivity {
         };
 
         name.addTextChangedListener(editTextListener);
-        abbreviation.addTextChangedListener(editTextListener);
+        abbreviation.addTextChangedListener(editTextListener);*/
 
+    }
+
+    private View.OnClickListener onButtonClick() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent;
+
+                if (view == done) {
+                    logic.addSubject(name.getText().toString(), abbreviation.getText().toString(), place.getText().toString(), "", teacher.getText().toString());
+                    intent = new Intent(NewSubject.this, TimeTableActivity.class);
+
+                    //Toast User Feedback
+                    Context context = getApplicationContext();
+                    CharSequence charseq1 = "Dein Entwurf wurde gespeichert.";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, charseq1, duration);
+                    toast.show();
+
+                } else /*if (view == cancel)*/{
+
+                    //Toast User Feedback
+                    Context context = getApplicationContext();
+                    CharSequence charseq2 = "Dein Entwurf wurde verworfen.";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, charseq2, duration);
+                    toast.show();
+
+
+                    intent = new Intent(NewSubject.this, TimeTableActivity.class);
+                }
+                Gson gson = new Gson();
+                intent.putExtra("logic", gson.toJson(logic));
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            }
+        };
     }
 
     @Override

@@ -45,6 +45,8 @@ public class ExamsActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ExamsActivity.this, NewExamActivity.class);
+                Gson gson = new Gson();
+                intent.putExtra("logic", gson.toJson(logic));
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }

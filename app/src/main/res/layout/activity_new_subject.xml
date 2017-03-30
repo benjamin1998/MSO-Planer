@@ -59,6 +59,18 @@
                 android:hint="Typ"
                 android:inputType="textAutoComplete|textPersonName" />
 
+            <Button
+                android:id="@+id/done"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="done" />
+
+            <Button
+                android:id="@+id/cancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="cancel" />
+
         </LinearLayout>
     </ScrollView>
 

@@ -8,8 +8,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -19,11 +21,31 @@ public class NewTaskActivity extends AppCompatActivity {
     private Logic logic;
     private Button cancel;
     private Button done;
+    private LinearLayout container;
+    private String[] names;
+    private Spinner subjectSpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_task);
+        container = (LinearLayout) findViewById(R.id.newLessonContainer);
+
+        Gson gson = new Gson();
+        String s = getIntent().getStringExtra("logic");
+        logic = gson.fromJson(getIntent().getStringExtra("logic"), Logic.class);
+
+        // Fächer für Dropdown
+        Subject[] subjects = logic.getSubjects().toArray(new Subject[logic.getSubjects().size()]);
+        names = new String[subjects.length];
+        for(int i = 0; i <subjects.length; i++){
+            names[i] = subjects[i].getName();
+        }
+
+        subjectSpinner = (Spinner) findViewById(R.id.spinner2);
+        ArrayAdapter<String> adapter4 = new ArrayAdapter<String>(NewTaskActivity.this,
+                android.R.layout.simple_spinner_item, names);
+        subjectSpinner.setAdapter(adapter4);
 
         done = (Button) findViewById(R.id.done);
         cancel = (Button) findViewById(R.id.cancel);
@@ -65,8 +87,10 @@ public class NewTaskActivity extends AppCompatActivity {
                 EditText z = (EditText) findViewById(R.id.tNote);
                 String string2 = z.getText().toString();
 
+                Subject s = logic.findSubject(subjectSpinner.getSelectedItem().toString());
+
                 if (view == done) {
-                    //logic.addTask(string1, string2);
+                    logic.addTask(s, string1, string2);
                     intent = new Intent(NewTaskActivity.this, HomeworkActivity.class);
 
                     //Toast User Feedback
@@ -90,7 +114,7 @@ public class NewTaskActivity extends AppCompatActivity {
                 }
                 Gson gson = new Gson();
                 intent.putExtra("logic", gson.toJson(logic));
-                //startActivity(intent);
+                startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         };
