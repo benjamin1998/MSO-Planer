@@ -13,7 +13,7 @@
     android:visibility="visible"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     app:layout_columnWeight="0"
-    tools:context="com.example.benjaminsalamon.msoplaner.ExamsActivity"
+    tools:context="com.randerath.johannes.msoplaner.ExamsActivity"
     tools:showIn="@layout/app_bar_exams">
 
 

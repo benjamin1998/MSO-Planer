@@ -51,10 +51,10 @@
                         android:textAppearance="@android:style/TextAppearance.Material.Large" />
 
                     <TextView
-                        android:text="@string/date"
+                        android:id="@+id/dateTV"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/date"
+                        android:text="@string/date"
                         android:textAppearance="@android:style/TextAppearance.Material.Medium" />
 
                     <TextView
