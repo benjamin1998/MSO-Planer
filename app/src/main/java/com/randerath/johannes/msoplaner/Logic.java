@@ -1,5 +1,6 @@
 package com.randerath.johannes.msoplaner;
 
+import java.util.ArrayList;
 import java.util.Stack;
 
 public class Logic {
@@ -26,22 +27,37 @@ public class Logic {
         if(!subjects.isEmpty()) id = subjects.peek().getId() + 1;
         else id = 0;
 
-        if(pName.equals("") || pName.equals(" ")) name = null;
+        if(pName.equals("") || pName.equals(" ")) throw new Error("empty name string");
         else name = pName;
 
-        if(pAbbreviation.equals("") || pAbbreviation.equals(" ")) abbreviation = null;
+        if(pAbbreviation.equals("") || pAbbreviation.equals(" ")) abbreviation = pName;
         else abbreviation = pAbbreviation;
 
-        if(pPlace.equals("") || pPlace.equals(" ")) place = null;
+        if(pPlace.equals("") || pPlace.equals(" ")) place = "";
         else place = pPlace;
 
         if(pType.equals("") || pType.equals(" ")) type = null;
         else type = pType;
 
-        if(pTeacher.equals("") || pTeacher.equals(" ")) teacher = null;
+        if(pTeacher.equals("") || pTeacher.equals(" ")) teacher = "";
         else teacher = pTeacher;
 
         Subject s = new Subject(id, name, abbreviation, place, type, teacher);
+        ArrayList<Subject> su = new ArrayList<>(subjects);
+        boolean done = false;
+        int i = 0;
+        while (!done) {
+            if(su.get(i).getName().compareTo(pName) > 0) {
+                i++;
+            }else if(su.get(i).getName().compareTo(pName) == 0) {
+                throw new IllegalArgumentException("Subject already exists!");
+            }else {
+                su.add(i-1, s);
+                done = true;
+            }
+        }
+        subjects = new Stack<Subject>();
+        subjects.addAll(su);
         subjects.push(s);
     }
 

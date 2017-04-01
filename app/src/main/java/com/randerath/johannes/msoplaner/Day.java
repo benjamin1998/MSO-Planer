@@ -31,7 +31,6 @@ class Day {
         }
     }
 
-
     public Lesson[] getLessons() {
         return lessons.toArray(new Lesson[lessons.size()]);
     }

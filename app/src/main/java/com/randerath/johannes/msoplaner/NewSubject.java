@@ -144,10 +144,15 @@ public class NewSubject extends AppCompatActivity {
     }
 
     public void doneAction(View view) {
+        try {
+            logic.addSubject(name.getText().toString(), abbreviation.getText().toString(), place.getText().toString(), type.getText().toString(), teacher.getText().toString());
+            Log.i("subject", logic.getSubjects().peek().getName());
+            back();
+        }catch (IllegalArgumentException ex) {
+            Toast.makeText(NewSubject.this, "Error! Subject already exists!", Toast.LENGTH_SHORT).show();
+            Log.e("User input error", "Tried to add existing subject");
+        }
 
-        logic.addSubject(name.getText().toString(), abbreviation.getText().toString(), place.getText().toString(), type.getText().toString(), teacher.getText().toString());
-        Log.i("subject", logic.getSubjects().peek().getName());
-        back();
 
     }
 
