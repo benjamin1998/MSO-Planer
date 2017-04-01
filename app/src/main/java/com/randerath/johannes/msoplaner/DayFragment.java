@@ -48,6 +48,8 @@ public class DayFragment extends Fragment {
         }
     }
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -67,8 +69,9 @@ public class DayFragment extends Fragment {
                 layout = new LinearLayout(parent.getContext());
                 layout.setOrientation(LinearLayout.VERTICAL);
                 layout.setId(View.generateViewId());
+                layout.setLongClickable(true);
                 ft = getFragmentManager().beginTransaction();
-                ft.add(layout.getId(), LessonFragment.newInstance(mDay, lesson.getSubject().getName(), lesson.getSubject().getPlace(), lesson.getSubject().getTeacher(), /*lesson.getStartHour(), lesson.getStartMin(), lesson.getEndHour(), lesson.getEndMin()*/ lesson.getTime()));
+                ft.add(layout.getId(), LessonFragment.newInstance(mDay, lesson.getSubject().getName(), lesson.getSubject().getPlace(), lesson.getSubject().getTeacher(),  lesson.getTime(), mDay, mLogic));
                 ft.commit();
                 linearContainer.addView(layout);
             }

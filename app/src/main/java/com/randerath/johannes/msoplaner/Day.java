@@ -44,5 +44,11 @@ class Day {
         return name;
     }
 
+    public void removeLesson(int lessonIndex) {
+        lessons.remove(lessonIndex);
+    }
 
+    public void removeLesson(Lesson lesson) {
+        lessons.remove(lesson);
+    }
 }

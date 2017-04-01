@@ -100,7 +100,7 @@ public class NewExamActivity extends AppCompatActivity {
                     Toast toast = Toast.makeText(context, charseq1, duration);
                     toast.show();
 
-                } else {
+                } else      {
 
                     //Toast User Feedback
                     Context context = getApplicationContext();

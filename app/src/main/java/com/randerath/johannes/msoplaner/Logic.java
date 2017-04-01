@@ -2,14 +2,14 @@ package com.randerath.johannes.msoplaner;
 
 import java.util.Stack;
 
-class Logic {
+public class Logic {
 
     private Stack<Subject> subjects;
     private Day[] days;
     private Stack<Exam> exams;
     private Stack<Task> tasks;
 
-    Logic() {
+    public Logic() {
 
         subjects = new Stack<Subject>();
         days = new Day[] {new Day(0, "Monday"), new Day(1, "Tuesday"), new Day(2, "Wednesday"), new Day(3, "Thursday"), new Day(4, "Friday"), new Day(5, "Saturday"), new Day(6, "Sunday"), };
@@ -18,7 +18,7 @@ class Logic {
 
     }
 
-    void addSubject(String pName, String pAbbreviation, String pPlace, String pType, String pTeacher) {
+    public void addSubject(String pName, String pAbbreviation, String pPlace, String pType, String pTeacher) {
 
         int id;
         String name, abbreviation, place, type, teacher;
@@ -45,11 +45,11 @@ class Logic {
         subjects.push(s);
     }
 
-    Stack<Subject> getSubjects() {
+    public Stack<Subject> getSubjects() {
         return subjects;
     }
 
-    Day getDay(int index) throws ArrayIndexOutOfBoundsException{
+    public Day getDay(int index) throws ArrayIndexOutOfBoundsException{
         if(index < days.length) {
             return days[index];
         }else {
@@ -57,19 +57,19 @@ class Logic {
         }
     }
 
-    void removeSubject(Subject s) {
+    public void removeSubject(Subject s) {
         subjects.remove(s);
     }
 
-    void removeExam(Exam e) {
+    public void removeExam(Exam e) {
         exams.remove(e);
     }
 
-    void removeTask(Task t) {
+    public void removeTask(Task t) {
         tasks.remove(t);
     }
 
-    Subject findSubject(String name) {
+    public Subject findSubject(String name) {
         Stack<Subject> temp = (Stack<Subject>) subjects.clone();
         while (!temp.isEmpty()) {
             if (temp.peek().getName().equals(name)) {
@@ -81,18 +81,22 @@ class Logic {
         return null;
     }
 
-    void addExam(String date, Subject subject) {
+    public void addExam(String date, Subject subject) {
         exams.add(new Exam(date, subject));
     }
 
-    Exam[] getExams() {
+    public Exam[] getExams() {
         return exams.toArray(new Exam[exams.size()]);
     }
 
-    void addTask(Subject subject, String dueDate, String description) { tasks.add(new Task(subject, dueDate, description));}
+    public void addTask(Subject subject, String dueDate, String description) { tasks.add(new Task(subject, dueDate, description));}
 
-    Task[] getTasks() {
+    public Task[] getTasks() {
         return tasks.toArray(new Task[tasks.size()]);
+    }
+
+    public Lesson getLesson(int day, int index){
+        return getDay(day).getLessons()[index];
     }
 
 }

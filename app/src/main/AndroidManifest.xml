@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.randerath.johannes.msoplaner.MainActivity"
+            android:name=".MainActivity"
             android:label="Home"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -19,40 +19,43 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.randerath.johannes.msoplaner.HomeworkActivity"
+            android:name=".HomeworkActivity"
             android:label="@string/title_activity_homework"
-            android:parentActivityName="com.randerath.johannes.msoplaner.MainActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.randerath.johannes.msoplaner.MainActivity" />
         </activity>
         <activity
-            android:name="com.randerath.johannes.msoplaner.TimeTableActivity"
+            android:name=".TimeTableActivity"
             android:label="@string/title_activity_time_table"
-            android:parentActivityName="com.randerath.johannes.msoplaner.MainActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.randerath.johannes.msoplaner.MainActivity" />
         </activity>
         <activity
-            android:name="com.randerath.johannes.msoplaner.ExamsActivity"
+            android:name=".ExamsActivity"
             android:label="@string/title_activity_exams"
-            android:parentActivityName="com.randerath.johannes.msoplaner.MainActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.randerath.johannes.msoplaner.MainActivity" />
         </activity>
-        <activity android:name="com.randerath.johannes.msoplaner.NewSubject" />
+        <activity android:name=".NewSubject" />
         <activity
-            android:name="com.randerath.johannes.msoplaner.NewLessonActivity" android:label="Neue Unterrichtsstunde" />
+            android:name=".NewLessonActivity"
+            android:label="Neue Unterrichtsstunde" />
         <activity
-            android:name="com.randerath.johannes.msoplaner.NewExamActivity"  android:label="Neue Klausur" />
+            android:name=".NewExamActivity"
+            android:label="Neue Klausur" />
         <activity
-            android:name="com.randerath.johannes.msoplaner.NewTaskActivity" android:label="Neue Aufgabe" />
-
+            android:name=".NewTaskActivity"
+            android:label="Neue Aufgabe" />
+        <activity android:name=".EditLessonActivity"></activity>
     </application>
 
 </manifest>
