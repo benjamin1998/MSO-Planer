@@ -1,5 +1,9 @@
 package com.randerath.johannes.msoplaner;
 
+import android.widget.EditText;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -9,6 +13,7 @@ public class Logic {
     private Day[] days;
     private Stack<Exam> exams;
     private Stack<Task> tasks;
+    private DateFormat dateFormat;
 
     public Logic() {
 
@@ -16,6 +21,7 @@ public class Logic {
         days = new Day[] {new Day(0, "Monday"), new Day(1, "Tuesday"), new Day(2, "Wednesday"), new Day(3, "Thursday"), new Day(4, "Friday"), new Day(5, "Saturday"), new Day(6, "Sunday"), };
         exams = new Stack<Exam>();
         tasks = new Stack<Task>();
+        dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 
     }
 
@@ -41,21 +47,24 @@ public class Logic {
 
         Subject s = new Subject(id, name, abbreviation, place, teacher);
         ArrayList<Subject> su = new ArrayList<>(subjects);
-        boolean done = false;
-        int i = 0;
-        while (!done) {
-            if(su.get(i).getName().compareTo(pName) > 0) {
-                i++;
-            }else if(su.get(i).getName().compareTo(pName) == 0) {
-                throw new IllegalArgumentException("Subject already exists!");
-            }else {
-                su.add(i, s);
-                done = true;
+        if(subjects.empty()) {
+            subjects.add(s);
+        }else {
+            boolean done = false;
+            int i = 0;
+            while (!done && i < su.size()) {
+                if(su.get(i).getName().compareTo(pName) > 0) {
+                    i++;
+                }else if(su.get(i).getName().compareTo(pName) == 0) {
+                    throw new IllegalArgumentException("Subject already exists!");
+                }else {
+                    su.add(i, s);
+                    done = true;
+                }
             }
+            subjects = new Stack<Subject>();
+            subjects.addAll(su);
         }
-        subjects = new Stack<Subject>();
-        subjects.addAll(su);
-        subjects.push(s);
     }
 
     public Stack<Subject> getSubjects() {
@@ -94,8 +103,8 @@ public class Logic {
         return null;
     }
 
-    public void addExam(String date, Subject subject) {
-        exams.add(new Exam(date, subject));
+    public void addExam(String date, Subject subject, String notes) {
+        exams.add(new Exam(date, subject, notes));
     }
 
     public Exam[] getExams() {
@@ -110,6 +119,10 @@ public class Logic {
 
     public Lesson getLesson(int day, int index){
         return getDay(day).getLessons()[index];
+    }
+
+    public DateFormat getDateFormat() {
+        return dateFormat;
     }
 
 }

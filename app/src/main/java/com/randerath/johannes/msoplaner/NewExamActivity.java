@@ -1,6 +1,8 @@
 package com.randerath.johannes.msoplaner;
 
-import android.content.Context;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,12 +12,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+
+import java.util.Calendar;
+import java.util.Date;
 
 public class NewExamActivity extends AppCompatActivity {
 
@@ -25,6 +31,10 @@ public class NewExamActivity extends AppCompatActivity {
     private LinearLayout container;
     private String[] names;
     private Spinner subjectSpinner;
+    private Button setDateB;
+    private String date;
+    private final Calendar cal = Calendar.getInstance();
+    private EditText notesET;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +45,8 @@ public class NewExamActivity extends AppCompatActivity {
         Gson gson = new Gson();
         String s = getIntent().getStringExtra("logic");
         logic = gson.fromJson(getIntent().getStringExtra("logic"), Logic.class);
+
+        notesET = (EditText) findViewById(R.id.tNotes);
 
         // Fächer für Dropdown
         Subject[] subjects = logic.getSubjects().toArray(new Subject[logic.getSubjects().size()]);
@@ -50,9 +62,14 @@ public class NewExamActivity extends AppCompatActivity {
 
         done = (Button) findViewById(R.id.done);
         cancel = (Button) findViewById(R.id.cancel);
+        setDateB = (Button) findViewById(R.id.setDateB);
 
         done.setOnClickListener(onButtonClick());
         cancel.setOnClickListener(onButtonClick());
+        setDateB.setOnClickListener(onButtonClick());
+
+        date = cal.get(Calendar.DAY_OF_MONTH) + "." + cal.get(Calendar.MONTH) + "." + cal.get(Calendar.YEAR);
+        setDateB.setText(date);
     }
 
 
@@ -80,44 +97,41 @@ public class NewExamActivity extends AppCompatActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent;
-
-                if (view == done) {
-
-                    String text = subjectSpinner.getSelectedItem().toString();
-                    Subject sub1=logic.findSubject(text);
-
-                    EditText t = (EditText) findViewById(R.id.tDate);
-                    String string1 = t.getText().toString();
-
-                    logic.addExam(string1, sub1);
-                    intent = new Intent(NewExamActivity.this, ExamsActivity.class);
-
-                    //Toast User Feedback
-                    Context context = getApplicationContext();
-                    CharSequence charseq1 = "Dein Entwurf wurde gespeichert.";
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast toast = Toast.makeText(context, charseq1, duration);
-                    toast.show();
-
-                } else      {
-
-                    //Toast User Feedback
-                    Context context = getApplicationContext();
-                    CharSequence charseq2 = "Dein Entwurf wurde verworfen.";
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast toast = Toast.makeText(context, charseq2, duration);
-                    toast.show();
-
-
-                    intent = new Intent(NewExamActivity.this, ExamsActivity.class);
-                }
+                Intent intent = new Intent(NewExamActivity.this, ExamsActivity.class);
                 Gson gson = new Gson();
                 intent.putExtra("logic", gson.toJson(logic));
                 intent.putExtra("lastActivity", "newExam");
-                startActivity(intent);
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+
+                if (view == done) {
+
+                    Toast.makeText(NewExamActivity.this, R.string.examSavedMessage, Toast.LENGTH_SHORT).show();
+                    logic.addExam(date, logic.findSubject(subjectSpinner.getSelectedItem().toString()), notesET.getText().toString());
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+
+                } else if (view == cancel) {
+                    Toast.makeText(NewExamActivity.this, R.string.notSavedMessage, Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                } else if (view == setDateB) {
+                    final Calendar cal = Calendar.getInstance();
+                    Dialog datePicker = new DatePickerDialog(NewExamActivity.this, dateSetListener(), cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
+                    datePicker.show();
+                }
+
+
             }
         };
     }
+    private DatePickerDialog.OnDateSetListener dateSetListener() {
+        return new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                date = year + "." + month + "." + dayOfMonth;
+                setDateB.setText(date);
+            }
+        };
+    }
+
 }

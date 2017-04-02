@@ -99,7 +99,7 @@ public class NewSubject extends AppCompatActivity {
                 } else /*if (view == cancel)*/{
                     String ls = getIntent().getStringExtra("logic");
                     logic = gson.fromJson(ls, Logic.class);
-                    Toast.makeText(NewSubject.this, R.string.subjectNotSavedMessage, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(NewSubject.this, R.string.notSavedMessage, Toast.LENGTH_SHORT).show();
                     back();
                 }
             }

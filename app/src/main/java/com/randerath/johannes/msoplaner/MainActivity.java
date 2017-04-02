@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity
                 logic.addSubject("Deutsch", "d", "R135", "Heise");
                 logic.addTask(logic.getSubjects().peek(), "04/04/2017", "Analyse");
                 logic.addSubject("Mathe", "m", "R135", "Dohrn");
-                logic.addExam("30/03/2017", logic.getSubjects().peek());
+                logic.addExam("30/03/2017", logic.getSubjects().peek(), "");
 
 
             }

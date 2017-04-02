@@ -31,22 +31,20 @@
                 android:layout_height="12dp"
                 android:layout_weight="1" />
 
-            <EditText
-                android:id="@+id/tDate"
+            <Button
+                android:id="@+id/setDateB"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:ems="10"
-                android:hint="Datum"
-                android:inputType="date" />
+                android:text="set date" />
 
             <EditText
-                android:id="@+id/tTheme"
+                android:id="@+id/tNotes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="Themen"
+                android:hint="Notizen"
                 android:inputType="textPersonName" />
 
             <Button
