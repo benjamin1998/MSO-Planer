@@ -45,6 +45,7 @@ public class HomeworkActivity extends AppCompatActivity
                 Intent intent = new Intent(HomeworkActivity.this, NewTaskActivity.class);
                 Gson gson = new Gson();
                 intent.putExtra("logic", gson.toJson(logic));
+                intent.putExtra("lastActivity", "homework");
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
@@ -124,6 +125,7 @@ public class HomeworkActivity extends AppCompatActivity
             Gson gson = new Gson();
             String logicString = gson.toJson(logic);
             intent.putExtra("logic", logicString);
+            intent.putExtra("lastActivity", "homework");
             startActivity(intent);
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         }

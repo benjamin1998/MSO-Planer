@@ -31,7 +31,6 @@ class Day {
         }
     }
 
-
     public Lesson[] getLessons() {
         return lessons.toArray(new Lesson[lessons.size()]);
     }
@@ -50,5 +49,21 @@ class Day {
 
     public void removeLesson(Lesson lesson) {
         lessons.remove(lesson);
+    }
+
+    public void bubbleSortLessonsByTime() {
+        boolean changed = true;
+        for(int j = 0; j < lessons.size()-1 && changed; j++) {
+            changed = false;
+            for (int i = 0; i < lessons.size()-(j+1); i++) {
+                if (lessons.get(i).getTime() > lessons.get(i + 1).getTime()) {
+                    Lesson temp = lessons.get(i);
+                    lessons.set(i, lessons.get(i + 1));
+                    lessons.set(i + 1, temp);
+                    changed = true;
+                }
+            }
+        }
+
     }
 }

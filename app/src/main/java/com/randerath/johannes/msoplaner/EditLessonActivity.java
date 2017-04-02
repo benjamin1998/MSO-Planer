@@ -68,22 +68,27 @@ public class EditLessonActivity extends AppCompatActivity {
         timeSpinner.setAdapter(new ArrayAdapter<String>(EditLessonActivity.this, android.R.layout.simple_spinner_dropdown_item, new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"}));
 
         subjectSpinner.setSelection(Arrays.asList(subjectNames).indexOf(lesson.getSubject().getName()), false);
-        timeSpinner.setSelection(lesson.getTime()+1, false);
+        timeSpinner.setSelection(lesson.getTime()-1, false);
     }
 
     private View.OnClickListener listener() {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(EditLessonActivity.this, TimeTableActivity.class);
                 if(v == save) {
-
-                }else if(v == cancel) {
-
+                    if(!subjectSpinner.getSelectedItem().toString().equals(lesson.getSubject().getName())) {
+                        lesson.setSbjct(logic.findSubject(subjectSpinner.getSelectedItem().toString()));
+                        day.bubbleSortLessonsByTime();
+                    }
+                    if(!timeSpinner.getSelectedItem().toString().equals(String.valueOf(lesson.getTime()))) {
+                        lesson.setTime(Integer.parseInt(timeSpinner.getSelectedItem().toString()));
+                    }
                 }else if(v == delete) {
                     day.removeLesson(lessonIndex);
                     Toast.makeText(EditLessonActivity.this, R.string.lessonDeletedMessage, Toast.LENGTH_SHORT).show();
-                }
-                Intent intent = new Intent(EditLessonActivity.this, TimeTableActivity.class);
+                } //else cancel
+                intent.putExtra("lastActivity", "editLesson");
                 intent.putExtra("logic", new Gson().toJson(logic));
                 startActivity(intent);
             }

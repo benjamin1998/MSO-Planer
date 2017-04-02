@@ -55,7 +55,10 @@
         <activity
             android:name=".NewTaskActivity"
             android:label="Neue Aufgabe" />
-        <activity android:name=".EditLessonActivity"></activity>
+        <activity android:name=".EditLessonActivity" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"></activity>
     </application>
 
 </manifest>

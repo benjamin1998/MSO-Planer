@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.randerath.johannes.msoplaner.DayFragmentPagerAdapater;
 import com.randerath.johannes.msoplaner.EditLessonActivity;
 import com.randerath.johannes.msoplaner.Logic;
 import com.randerath.johannes.msoplaner.R;
@@ -72,9 +73,10 @@ public class LessonFragment extends Fragment {
         return new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                LinearLayout container = (LinearLayout) ((LinearLayout) v.getParent()).getParent();
                 LinearLayout linear = (LinearLayout) v.getParent();
-                //ViewPager pager = (ViewPager) linear.getParent();
+                LinearLayout container = (LinearLayout) linear.getParent();
+                ViewPager pager = (ViewPager) container.getParent().getParent();
+                pager.invalidate();
                 int index = container.indexOfChild(linear);
                 Intent intent = new Intent(linear.getContext(), EditLessonActivity.class);
                 Gson gson = new Gson();

@@ -6,10 +6,10 @@ import android.graphics.Color;
 class Subject {
 
     private int id;
-    private String name, abbreviation, place, type, teacher;
+    private String name, abbreviation, place, teacher;
     private Color color;
 
-    public Subject(int pId, String pName, String pAbbreviation, String pPlace, String pType, String pTeacher) {
+    public Subject(int pId, String pName, String pAbbreviation, String pPlace, String pTeacher) {
 
         id = pId;
         name = pName;
@@ -17,7 +17,6 @@ class Subject {
         abbreviation = pAbbreviation;
         place = pPlace;
         teacher = pTeacher;
-        type = pType;
 
     }
 
@@ -47,14 +46,6 @@ class Subject {
 
     public String getPlace() {
         return place;
-    }
-
-    public void setType(String pValue) {
-        type = pValue;
-    }
-
-    public String getType() {
-        return type;
     }
 
     public void setTeacher(String pValue) {

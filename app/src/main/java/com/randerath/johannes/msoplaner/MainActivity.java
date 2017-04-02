@@ -62,18 +62,18 @@ public class MainActivity extends AppCompatActivity
                 logic = gson.fromJson(s, Logic.class);
             }else {
                 logic = new Logic();
-                logic.addSubject("SoWi", "sw", "R035", "", "Hammes");
-                logic.addSubject("Englisch", "e", "R708", "", "Neuburger");
-                logic.addSubject("Info", "i", "R323", "", "Zons");
+                logic.addSubject("SoWi", "sw", "R035", "Hammes");
+                logic.addSubject("Englisch", "e", "R708", "Neuburger");
+                logic.addSubject("Info", "i", "R323", "Zons");
                 for(int i = 0; i < 6; i++) {
                     logic.getDay(i).addLesson(logic.getSubjects().peek(), 1);
                     logic.getDay(i).addLesson(logic.getSubjects().peek(), 2);
                 }
-                logic.addSubject("Latein", "l", "R025", "", "von Berg");
+                logic.addSubject("Latein", "l", "R025", "von Berg");
                 logic.addTask(logic.getSubjects().peek(), "30/03/2017", "Übersetzung bis Zeile 10");
-                logic.addSubject("Deutsch", "d", "R135", "", "Heise");
+                logic.addSubject("Deutsch", "d", "R135", "Heise");
                 logic.addTask(logic.getSubjects().peek(), "04/04/2017", "Analyse");
-                logic.addSubject("Mathe", "m", "R135", "", "Dohrn");
+                logic.addSubject("Mathe", "m", "R135", "Dohrn");
                 logic.addExam("30/03/2017", logic.getSubjects().peek());
 
 
@@ -166,6 +166,7 @@ public class MainActivity extends AppCompatActivity
             Gson gson = new Gson();
             String logicString = gson.toJson(logic);
             intent.putExtra("logic", logicString);
+            intent.putExtra("lastActivity", "main");
             startActivity(intent);
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         }
