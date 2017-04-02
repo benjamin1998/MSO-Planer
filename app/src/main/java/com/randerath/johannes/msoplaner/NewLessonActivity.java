@@ -146,6 +146,7 @@ public class NewLessonActivity extends AppCompatActivity {
                 }
                 Gson gson = new Gson();
                 intent.putExtra("logic", gson.toJson(logic));
+                intent.putExtra("lastActivity", "newLesson");
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }

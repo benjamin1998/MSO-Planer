@@ -76,6 +76,7 @@ public class LessonFragment extends Fragment {
                 LinearLayout linear = (LinearLayout) v.getParent();
                 LinearLayout container = (LinearLayout) linear.getParent();
                 ViewPager pager = (ViewPager) container.getParent().getParent();
+                pager.invalidate();
                 int index = container.indexOfChild(linear);
                 Intent intent = new Intent(linear.getContext(), EditLessonActivity.class);
                 Gson gson = new Gson();
@@ -96,8 +97,6 @@ public class LessonFragment extends Fragment {
 
         view.setLongClickable(true);
         view.setOnLongClickListener(onLongClickListener());
-
-        Log.i("container", container.getParent().getParent().getClass().toString());
 
         TextView sbjTV = (TextView) view.findViewById(R.id.subject);
         TextView teacherTV = (TextView) view.findViewById(R.id.teacher);

@@ -85,6 +85,7 @@ public class TimeTableActivity extends AppCompatActivity
                 }
                 Gson gson = new Gson();
                 intent.putExtra("logic", gson.toJson(logic));
+                intent.putExtra("lastActivity", "timeTable");
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
@@ -151,6 +152,7 @@ public class TimeTableActivity extends AppCompatActivity
             Gson gson = new Gson();
             String logicString = gson.toJson(logic);
             intent.putExtra("logic", logicString);
+            intent.putExtra("lastActivity", "timeTable");
             startActivity(intent);
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         }

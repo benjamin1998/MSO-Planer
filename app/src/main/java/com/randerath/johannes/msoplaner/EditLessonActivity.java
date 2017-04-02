@@ -79,7 +79,7 @@ public class EditLessonActivity extends AppCompatActivity {
                 if(v == save) {
                     if(!subjectSpinner.getSelectedItem().toString().equals(lesson.getSubject().getName())) {
                         lesson.setSbjct(logic.findSubject(subjectSpinner.getSelectedItem().toString()));
-                        intent.putExtra("refresh", true);
+                        day.bubbleSortLessonsByTime();
                     }
                     if(!timeSpinner.getSelectedItem().toString().equals(String.valueOf(lesson.getTime()))) {
                         lesson.setTime(Integer.parseInt(timeSpinner.getSelectedItem().toString()));
@@ -88,6 +88,7 @@ public class EditLessonActivity extends AppCompatActivity {
                     day.removeLesson(lessonIndex);
                     Toast.makeText(EditLessonActivity.this, R.string.lessonDeletedMessage, Toast.LENGTH_SHORT).show();
                 } //else cancel
+                intent.putExtra("lastActivity", "editLesson");
                 intent.putExtra("logic", new Gson().toJson(logic));
                 startActivity(intent);
             }

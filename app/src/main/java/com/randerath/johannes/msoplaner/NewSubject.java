@@ -28,7 +28,6 @@ public class NewSubject extends AppCompatActivity {
     private EditText name;
     private EditText abbreviation;
     private EditText place;
-    private EditText type;
     private EditText teacher;
 
     @Override
@@ -49,7 +48,6 @@ public class NewSubject extends AppCompatActivity {
         name = (EditText) findViewById(R.id.name);
         abbreviation = (EditText) findViewById(R.id.abbreviation);
         place = (EditText) findViewById(R.id.place);
-        type = (EditText) findViewById(R.id.type);
         teacher = (EditText) findViewById(R.id.teacher);
 
         /*TextWatcher editTextListener = new TextWatcher() {
@@ -83,35 +81,27 @@ public class NewSubject extends AppCompatActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent;
 
                 if (view == done) {
-                    logic.addSubject(name.getText().toString(), abbreviation.getText().toString(), place.getText().toString(), "", teacher.getText().toString());
-                    intent = new Intent(NewSubject.this, TimeTableActivity.class);
-
-                    //Toast User Feedback
-                    Context context = getApplicationContext();
-                    CharSequence charseq1 = "Dein Entwurf wurde gespeichert.";
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast toast = Toast.makeText(context, charseq1, duration);
-                    toast.show();
+                    try {
+                        logic.addSubject(name.getText().toString(), abbreviation.getText().toString(), place.getText().toString(), teacher.getText().toString());
+                        Toast.makeText(NewSubject.this, R.string.subjectSavedMessage, Toast.LENGTH_SHORT).show();
+                        back();
+                    }catch (IllegalArgumentException ex) {
+                        Toast.makeText(NewSubject.this, R.string.subjectExistingMessage, Toast.LENGTH_SHORT).show();
+                        Log.e("User input error", "Tried to add existing subject");
+                        name.setText("");
+                        abbreviation.setText("");
+                        place.setText("");
+                        teacher.setText("");
+                    }
 
                 } else /*if (view == cancel)*/{
-
-                    //Toast User Feedback
-                    Context context = getApplicationContext();
-                    CharSequence charseq2 = "Dein Entwurf wurde verworfen.";
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast toast = Toast.makeText(context, charseq2, duration);
-                    toast.show();
-
-
-                    intent = new Intent(NewSubject.this, TimeTableActivity.class);
+                    String ls = getIntent().getStringExtra("logic");
+                    logic = gson.fromJson(ls, Logic.class);
+                    Toast.makeText(NewSubject.this, R.string.subjectNotSavedMessage, Toast.LENGTH_SHORT).show();
+                    back();
                 }
-                Gson gson = new Gson();
-                intent.putExtra("logic", gson.toJson(logic));
-                startActivity(intent);
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         };
     }
@@ -135,32 +125,13 @@ public class NewSubject extends AppCompatActivity {
         return super.onOptionsItemSelected(item); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void cancelAction(View view) {
-
-        String ls = getIntent().getStringExtra("logic");
-        logic = gson.fromJson(ls, Logic.class);
-        back();
-
-    }
-
-    public void doneAction(View view) {
-        try {
-            logic.addSubject(name.getText().toString(), abbreviation.getText().toString(), place.getText().toString(), type.getText().toString(), teacher.getText().toString());
-            Log.i("subject", logic.getSubjects().peek().getName());
-            back();
-        }catch (IllegalArgumentException ex) {
-            Toast.makeText(NewSubject.this, "Error! Subject already exists!", Toast.LENGTH_SHORT).show();
-            Log.e("User input error", "Tried to add existing subject");
-        }
-
-
-    }
 
     private void back() {
 
         Intent intent = new Intent();
         String logicString = gson.toJson(logic);
         intent.putExtra("logic", logicString);
+        intent.putExtra("lastActivity", "newSubject");
         String lastActivityString = getIntent().getStringExtra("lastActivity");
         switch(lastActivityString){
             case "main":

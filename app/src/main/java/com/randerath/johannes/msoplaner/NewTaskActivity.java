@@ -114,6 +114,7 @@ public class NewTaskActivity extends AppCompatActivity {
                 }
                 Gson gson = new Gson();
                 intent.putExtra("logic", gson.toJson(logic));
+                intent.putExtra("lastActivity", "newTask");
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }

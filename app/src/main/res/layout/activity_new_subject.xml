@@ -51,14 +51,6 @@
                 android:hint="Lehrer"
                 android:inputType="textPersonName" />
 
-            <EditText
-                android:id="@+id/type"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Typ"
-                android:inputType="textAutoComplete|textPersonName" />
-
             <Button
                 android:id="@+id/done"
                 android:layout_width="match_parent"

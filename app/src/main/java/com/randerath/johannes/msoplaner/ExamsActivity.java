@@ -47,6 +47,7 @@ public class ExamsActivity extends AppCompatActivity
                 Intent intent = new Intent(ExamsActivity.this, NewExamActivity.class);
                 Gson gson = new Gson();
                 intent.putExtra("logic", gson.toJson(logic));
+                intent.putExtra("lastActivity", "exams");
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
@@ -126,6 +127,7 @@ public class ExamsActivity extends AppCompatActivity
             Gson gson = new Gson();
             String logicString = gson.toJson(logic);
             intent.putExtra("logic", logicString);
+            intent.putExtra("lastActivity", "exams");
             startActivity(intent);
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         }

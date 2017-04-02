@@ -19,7 +19,7 @@ public class Logic {
 
     }
 
-    public void addSubject(String pName, String pAbbreviation, String pPlace, String pType, String pTeacher) {
+    public void addSubject(String pName, String pAbbreviation, String pPlace, String pTeacher) throws IllegalArgumentException{
 
         int id;
         String name, abbreviation, place, type, teacher;
@@ -36,13 +36,10 @@ public class Logic {
         if(pPlace.equals("") || pPlace.equals(" ")) place = "";
         else place = pPlace;
 
-        if(pType.equals("") || pType.equals(" ")) type = null;
-        else type = pType;
-
         if(pTeacher.equals("") || pTeacher.equals(" ")) teacher = "";
         else teacher = pTeacher;
 
-        Subject s = new Subject(id, name, abbreviation, place, type, teacher);
+        Subject s = new Subject(id, name, abbreviation, place, teacher);
         ArrayList<Subject> su = new ArrayList<>(subjects);
         boolean done = false;
         int i = 0;
@@ -52,7 +49,7 @@ public class Logic {
             }else if(su.get(i).getName().compareTo(pName) == 0) {
                 throw new IllegalArgumentException("Subject already exists!");
             }else {
-                su.add(i-1, s);
+                su.add(i, s);
                 done = true;
             }
         }

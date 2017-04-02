@@ -20,7 +20,9 @@
     <string name="until">Fällig bis zum:</string>
     <string name="notes">Notizen:</string>
     <string name="lessonDeletedMessage">Stunde entfernt!</string>
-
+    <string name="subjectSavedMessage">Fach gespeichert</string>
+    <string name="subjectNotSavedMessage">Entwurf verworfen</string>
+    <string name="subjectExistingMessage">Dieses Fach gibt es schon</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_homework">Hausaufgaben</string>
