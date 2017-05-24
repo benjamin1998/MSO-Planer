@@ -2,6 +2,7 @@ package com.randerath.johannes.msoplaner;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -21,6 +22,10 @@ import com.google.gson.Gson;
 import layout.ExamFragment;
 import layout.TaskFragment;
 
+/**
+ * Displays homework (as HomeworkFragments) in a list.
+ */
+
 public class HomeworkActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener
 {
@@ -35,9 +40,11 @@ public class HomeworkActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //get Applcation logic as Intent argument
         Gson gson = new Gson();
         logic = gson.fromJson(getIntent().getStringExtra("logic"), Logic.class);
 
+        //Initialize UI elements
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,8 +73,13 @@ public class HomeworkActivity extends AppCompatActivity
 
         homeworkContainer = (LinearLayout) findViewById(R.id.homeworkContainer);
 
+        //show homework as Fragments
         refreshFragments();
     }
+
+    /**
+     * Use back button to close navigation drawer
+     */
 
     @Override
     public void onBackPressed() {
@@ -101,9 +113,15 @@ public class HomeworkActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Implemts functionality of navigation drawer
+     * @param item selected navigation item
+     * @return successful?
+     */
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
@@ -122,22 +140,34 @@ public class HomeworkActivity extends AppCompatActivity
         }
 
         if(intent != null) {
+            //Pass Application logic as argument and perform Intent
             Gson gson = new Gson();
             String logicString = gson.toJson(logic);
             intent.putExtra("logic", logicString);
             intent.putExtra("lastActivity", "homework");
             startActivity(intent);
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out); // use custom animation
         }
 
+        //close navigation drawer, if no Intent was performed (e.g. this Activity was selected)
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    private void refreshFragments() {
-        homeworkContainer.removeAllViews();
+    /**
+     * Redraw fragments
+     */
 
+    private void refreshFragments() {
+        homeworkContainer.removeAllViews(); //clear all Fragments
+
+        /*Same process as in DayFragment.
+              Creating Fragment,
+              converting it to a view using fragment transaction and a container layout
+              and adding the container view to the parent.
+              Repeat for every homework.
+            */
         LinearLayout temp;
         FragmentTransaction ft;
         Task[] tasks = logic.getTasks();

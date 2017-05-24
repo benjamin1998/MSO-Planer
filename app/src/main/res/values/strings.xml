@@ -20,6 +20,7 @@
     <string name="until">Fällig bis zum:</string>
     <string name="notes">Notizen:</string>
     <string name="lessonDeletedMessage">Stunde entfernt!</string>
+    <string name="lessonExistingMessage">Zu der gewählten Zeit besteht bereits eine Stunde. Bitte entferne diese zuerst.</string>
     <string name="subjectSavedMessage">Fach gespeichert</string>
     <string name="notSavedMessage">Entwurf verworfen</string>
     <string name="subjectExistingMessage">Dieses Fach gibt es schon</string>

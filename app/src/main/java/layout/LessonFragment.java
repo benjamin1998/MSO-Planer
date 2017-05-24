@@ -1,6 +1,5 @@
 package layout;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,14 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.randerath.johannes.msoplaner.DayFragmentPagerAdapater;
 import com.randerath.johannes.msoplaner.EditLessonActivity;
 import com.randerath.johannes.msoplaner.Logic;
 import com.randerath.johannes.msoplaner.R;
 
+/**
+ * UI Design class to visualize a single lesson. Used in LessonActivity
+ */
 
 public class LessonFragment extends Fragment {
 
@@ -38,6 +38,17 @@ public class LessonFragment extends Fragment {
     private int mDay;
     private Logic mLogic;
 
+    /**
+     * Create new LessonFragment
+     * @param index position in the list on that day
+     * @param subjectName subject as String
+     * @param place room or facility
+     * @param teacher name of teacher
+     * @param time Time of lesson at a day (0..12)
+     * @param day Day of lesson with 0=Monday, 1=Tuesday, ...
+     * @param logic Application logic
+     * @return new LessonFragment
+     */
     public static LessonFragment newInstance(int index, String subjectName, String place, String teacher, int time, int day,  Logic logic) {
         Bundle args = new Bundle();
         args.putInt(ARG_INDEX, index);
@@ -59,6 +70,7 @@ public class LessonFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //assign variables from arguments
         Gson gson = new Gson();
         mIndex = getArguments().getInt(ARG_INDEX);
         mSubjectName = getArguments().getString(ARG_SBJNAME);
@@ -69,6 +81,9 @@ public class LessonFragment extends Fragment {
         mLogic = gson.fromJson(getArguments().getString(ARG_LOGIC), Logic.class);
     }
 
+    /**
+     * Edit Lesson on long press. Intent to EditLessonActivity
+     */
     private View.OnLongClickListener onLongClickListener() {
         return new View.OnLongClickListener() {
             @Override
@@ -91,6 +106,10 @@ public class LessonFragment extends Fragment {
         };
     }
 
+    /**
+     * Called when fragment is actually shown.
+     * @return parent view containing new LessonFragment
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_lesson, container, false);

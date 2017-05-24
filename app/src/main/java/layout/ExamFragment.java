@@ -11,6 +11,10 @@ import com.randerath.johannes.msoplaner.R;
 
 import java.util.Date;
 
+/**
+ * UI Design class to visualize a single exam. Used in ExamActivity
+ */
+
 public class ExamFragment extends Fragment{
     public static final String ARG_INDEX = "ARG_INDEX";
     public static final String ARG_SUBJECT = "ARG_SUBJECT";
@@ -21,6 +25,13 @@ public class ExamFragment extends Fragment{
     private String mSubject;
     private String mDate;
 
+    /**
+     * Create new ExamFragment
+     * @param index position in the list
+     * @param subject subject as com.randerath.johannes.msoplaner.Subject
+     * @param date date as dd.mm.yyyy
+     * @return new ExamFragment
+     */
 
     public static ExamFragment newInstance(int index, String subject, String date) {
         Bundle args = new Bundle();
@@ -35,11 +46,16 @@ public class ExamFragment extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //assign variables from arguments
         mIndex = getArguments().getInt(ARG_INDEX);
         mSubject = getArguments().getString(ARG_SUBJECT);
         mDate = getArguments().getString(ARG_DATE);
     }
 
+    /**
+     * Called when fragment is actually shown.
+     * @return parent view containing new ExamFragment
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_exam, container, false);

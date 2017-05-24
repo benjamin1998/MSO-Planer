@@ -23,6 +23,10 @@ import com.google.gson.Gson;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * Activity as GUI for creating new Exam objects.
+ */
+
 public class NewExamActivity extends AppCompatActivity {
 
     private Logic logic;
@@ -42,13 +46,15 @@ public class NewExamActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new_exam2);
         container = (LinearLayout) findViewById(R.id.newLessonContainer);
 
+        //get logic from intent
         Gson gson = new Gson();
         String s = getIntent().getStringExtra("logic");
         logic = gson.fromJson(getIntent().getStringExtra("logic"), Logic.class);
 
+        //Initialize UI elements
         notesET = (EditText) findViewById(R.id.tNotes);
 
-        // Fächer für Dropdown
+        // Get subject names to feed Spinner
         Subject[] subjects = logic.getSubjects().toArray(new Subject[logic.getSubjects().size()]);
         names = new String[subjects.length];
         for(int i = 0; i <subjects.length; i++){
@@ -103,17 +109,19 @@ public class NewExamActivity extends AppCompatActivity {
                 intent.putExtra("lastActivity", "newExam");
 
                 if (view == done) {
-
+                    //save exam and intent back to ExamsActivity
                     Toast.makeText(NewExamActivity.this, R.string.examSavedMessage, Toast.LENGTH_SHORT).show();
                     logic.addExam(date, logic.findSubject(subjectSpinner.getSelectedItem().toString()), notesET.getText().toString());
                     startActivity(intent);
-                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out); //use custom animation
 
                 } else if (view == cancel) {
+                    //Intent back to ExamsActivity without saving
                     Toast.makeText(NewExamActivity.this, R.string.notSavedMessage, Toast.LENGTH_SHORT).show();
                     startActivity(intent);
-                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out); // use custom animation
                 } else if (view == setDateB) {
+                    //Call DatePickerDialog as UI to set date.
                     final Calendar cal = Calendar.getInstance();
                     Dialog datePicker = new DatePickerDialog(NewExamActivity.this, dateSetListener(), cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
                     datePicker.show();
@@ -123,6 +131,11 @@ public class NewExamActivity extends AppCompatActivity {
             }
         };
     }
+
+    /**
+     * saves date as result of DatePickerDialog
+     * @return date as String with correct format.
+     */
     private DatePickerDialog.OnDateSetListener dateSetListener() {
         return new DatePickerDialog.OnDateSetListener() {
 

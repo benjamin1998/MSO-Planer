@@ -23,6 +23,10 @@ import java.sql.Date;
 import layout.ExamFragment;
 import layout.LessonFragment;
 
+/**
+ * Displays exams (as ExamFragments) in a list.
+ */
+
 public class ExamsActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -36,10 +40,12 @@ public class ExamsActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //get Application logic from Intent
         Gson gson = new Gson();
         String logicString = getIntent().getStringExtra("logic");
         logic = gson.fromJson(logicString, Logic.class);
 
+        //Initialize UI elements
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,9 +74,13 @@ public class ExamsActivity extends AppCompatActivity
 
         examContainer = (LinearLayout) findViewById(R.id.content_exams);
 
+        //Show Exams as Fragments
         refreshFragments();
     }
 
+    /**
+     * Use back Button to close navigation drawer.
+     */
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -103,6 +113,12 @@ public class ExamsActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Implements functionality of navigation drawer.
+     * @param item selected item in drawer
+     * @return successful?
+     */
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -111,7 +127,7 @@ public class ExamsActivity extends AppCompatActivity
 
         Intent intent = null;
 
-        switch (id) {
+        switch (id) { //get selected navigation item
             case R.id.nav_main:
                 intent = new Intent(ExamsActivity.this, MainActivity.class);
                 break;
@@ -124,12 +140,13 @@ public class ExamsActivity extends AppCompatActivity
         }
 
         if(intent != null) {
+            //pass application logic as Intent argument
             Gson gson = new Gson();
             String logicString = gson.toJson(logic);
             intent.putExtra("logic", logicString);
             intent.putExtra("lastActivity", "exams");
             startActivity(intent);
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out); //use custom animation
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -137,12 +154,21 @@ public class ExamsActivity extends AppCompatActivity
         return true;
     }
 
+    /**
+     * Redraw ExamFragments.
+     */
     private void refreshFragments() {
-        examContainer.removeAllViews();
+        examContainer.removeAllViews(); //clear Activity
         LinearLayout temp;
         FragmentTransaction ft;
-        Exam[] exams = logic.getExams();
+        Exam[] exams = logic.getExams(); //get exams to insert
         for(int i = 0; i < exams.length; i++) {
+            /*Same process as in DayFragment.
+              Creating Fragment,
+              converting it to a view using fragment transaction and a container layout
+              and adding the container view to the parent.
+              Repeat for every exam.
+            */
             temp = new LinearLayout(ExamsActivity.this);
             temp.setOrientation(LinearLayout.VERTICAL);
             temp.setId(View.generateViewId());

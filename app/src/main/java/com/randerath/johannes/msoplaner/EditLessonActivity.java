@@ -15,6 +15,11 @@ import com.google.gson.Gson;
 import java.util.Arrays;
 import java.util.Stack;
 
+/**
+ * Activity for the user to be able to modify specific lessons.
+ * Accessed by performing long press on LessonFragment.
+ */
+
 public class EditLessonActivity extends AppCompatActivity {
 
     Button save;
@@ -27,6 +32,7 @@ public class EditLessonActivity extends AppCompatActivity {
     int lessonIndex;
 
     Day day;
+    Lesson[] lessons;
     Lesson lesson;
     Logic logic;
     Gson gson;
@@ -39,14 +45,18 @@ public class EditLessonActivity extends AppCompatActivity {
 
         gson = new Gson();
         String logicS = getIntent().getStringExtra("logic");
-        logic = gson.fromJson(logicS, Logic.class);
+        logic = gson.fromJson(logicS, Logic.class); //get Application logic from Intent
 
+        //Vector(day, lesson) to identify modified lesson
         dayIndex = getIntent().getIntExtra("dayIndex", 0);
         lessonIndex = getIntent().getIntExtra("lessonIndex", 0);
 
+        //get actual lesson to modify
         day = logic.getDay(dayIndex);
-        lesson = day.getLessons()[lessonIndex];
+        lessons = day.getLessons();
+        lesson = lessons[lessonIndex];
 
+        //Initializing UI elements
         save = (Button) findViewById(R.id.save);
         cancel = (Button) findViewById(R.id.cancel);
         delete = (Button) findViewById(R.id.delete);
@@ -71,18 +81,31 @@ public class EditLessonActivity extends AppCompatActivity {
         timeSpinner.setSelection(lesson.getTime()-1, false);
     }
 
+    /**
+     * Handles actions for all UI Buttons.
+     */
     private View.OnClickListener listener() {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(EditLessonActivity.this, TimeTableActivity.class);
-                if(v == save) {
-                    if(!subjectSpinner.getSelectedItem().toString().equals(lesson.getSubject().getName())) {
-                        lesson.setSbjct(logic.findSubject(subjectSpinner.getSelectedItem().toString()));
-                        day.bubbleSortLessonsByTime();
+                if(v == save) { //Save button pressed
+                    if(!subjectSpinner.getSelectedItem().toString().equals(lesson.getSubject().getName())) { //if subject changed
+                        lesson.setSbjct(logic.findSubject(subjectSpinner.getSelectedItem().toString())); //change subject
                     }
-                    if(!timeSpinner.getSelectedItem().toString().equals(String.valueOf(lesson.getTime()))) {
-                        lesson.setTime(Integer.parseInt(timeSpinner.getSelectedItem().toString()));
+                    int time = Integer.parseInt(timeSpinner.getSelectedItem().toString());
+                    if(time != lesson.getTime()) { //if time changed
+                        boolean existing = false;
+                        for (Lesson i : lessons) { //test if time is used
+                            if(i.getTime() != time) {
+                                existing = true;
+                                Toast.makeText(EditLessonActivity.this, R.string.lessonExistingMessage, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        if(!existing) {
+                            lesson.setTime(Integer.parseInt(timeSpinner.getSelectedItem().toString())); //change time
+                            day.bubbleSortLessonsByTime(); //resort lessons
+                        }
                     }
                 }else if(v == delete) {
                     day.removeLesson(lessonIndex);

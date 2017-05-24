@@ -15,8 +15,14 @@ import com.google.gson.Gson;
 
 import layout.LessonFragment;
 
+/**
+ * Container for lessons at a specific day of the week.
+ * Contained by page of DayFragmentPagerAdapter.
+ */
+
 public class DayFragment extends Fragment {
-    private static final int ARG_DAY = 0; //saves the index of the day
+
+    private static final String ARG_DAY = "ARG_DAY"; //saves the index of the day
 
     private int mDay;
     private Logic mLogic;
@@ -25,6 +31,12 @@ public class DayFragment extends Fragment {
         // Required empty public constructor
     }
 
+    /**
+     * Creates new DayFragment.
+     * @param day Index of day of the week that should be modelled. Also index of the page of the ViewPagerAdapter. 0 = Monday, 1 = Tuesday, ...
+     * @param pLogic Application logic. Used to get lessons at specified day.
+     * @return Newly created instance of class DayFragment
+     */
 
     public static DayFragment newInstance(int day, Logic pLogic) {
         DayFragment fragment = new DayFragment();
@@ -32,10 +44,14 @@ public class DayFragment extends Fragment {
         Gson gson = new Gson();
         String logicString = gson.toJson(pLogic);
         args.putString("logic", logicString);
-        args.putInt("ARG_DAY", day);
+        args.putInt(ARG_DAY, day);
         fragment.setArguments(args);
         return fragment;
     }
+
+    /**
+     * Assigns variables from arguments.
+     */
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,7 +64,10 @@ public class DayFragment extends Fragment {
         }
     }
 
-
+    /**
+     * Called when DayFragment is actually shown.
+     * @return parent layout with new DayFragment inserted.
+     */
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,21 +78,21 @@ public class DayFragment extends Fragment {
         FragmentTransaction ft;
         LinearLayout layout;
 
-        Day day = mLogic.getDay(mDay);
+        Day day = mLogic.getDay(mDay); //get data for relevant day from application logic. Data type: com.randerath.johannes.msoPlaner.Day
         Gson gson = new Gson();
-        String logicString = gson.toJson(mLogic);
-        Log.i("logic", logicString);
-        Lesson[] lessons = day.getLessons();
-        if(lessons.length > 1) {
-            for (Lesson lesson : lessons) {
-                layout = new LinearLayout(parent.getContext());
+        //String logicString = gson.toJson(mLogic);
+        //Log.i("logic", logicString);
+        Lesson[] lessons = day.getLessons(); //get lessons to show on DayFragment
+        if(lessons.length > 0) { //if lessons exist
+            for (Lesson lesson : lessons) { //insert every lesson into DayFragment
+                layout = new LinearLayout(parent.getContext()); //use as container for FragmentTransaction => 'converts' Fragment to View
                 layout.setOrientation(LinearLayout.VERTICAL);
                 layout.setId(View.generateViewId());
                 layout.setLongClickable(true);
-                ft = getFragmentManager().beginTransaction();
+                ft = getFragmentManager().beginTransaction(); //add DayFragment to Layout
                 ft.add(layout.getId(), LessonFragment.newInstance(mDay, lesson.getSubject().getName(), lesson.getSubject().getPlace(), lesson.getSubject().getTeacher(),  lesson.getTime(), mDay, mLogic));
                 ft.commit();
-                linearContainer.addView(layout);
+                linearContainer.addView(layout); //add view including Fragment to parent
             }
         }
 

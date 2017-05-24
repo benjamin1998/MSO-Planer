@@ -10,6 +10,10 @@ import android.widget.TextView;
 
 import com.randerath.johannes.msoplaner.R;
 
+/**
+ * UI Design class to visualize a single homework. Used in HomeworkActivity
+ */
+
 public class TaskFragment extends Fragment{
 
     public static final String ARG_SUBJECT = "ARG_SUBJECT";
@@ -19,6 +23,15 @@ public class TaskFragment extends Fragment{
     private String mSubject;
     private String mDueDate;
     private String mDescription;
+
+
+    /**
+     * Create new ExamFragment
+     * @param subject subject as com.randerath.johannes.msoplaner.Subject
+     * @param duedate Duedate as dd.mm.yyyy
+     * @param description description as String
+     * @return new TaskFragment
+     */
 
     public static TaskFragment newInstance(String subject, String duedate, String description) {
         Bundle args = new Bundle();
@@ -38,6 +51,10 @@ public class TaskFragment extends Fragment{
         mDescription = getArguments().getString(ARG_DESCRIPTION);
     }
 
+    /**
+     * Called when fragment is actually shown.
+     * @return parent view containing new TaskFragment
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 

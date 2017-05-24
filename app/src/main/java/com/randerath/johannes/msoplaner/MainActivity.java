@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Initialize UI elements
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -54,13 +55,14 @@ public class MainActivity extends AppCompatActivity
         MenuItem item = menu.findItem(R.id.nav_main);
         item.setChecked(true);
 
+        //Read Application logic from file
         gson = new Gson();
         File file = new File(getFilesDir(), "logic");
-        if(getIntent().getExtras() == null) {
-            if(file.exists()) {
+        if(getIntent().getExtras() == null) { //if App just started
+            if(file.exists()) { //if logic saved and file found
                 String s = readStringFromFile();
                 logic = gson.fromJson(s, Logic.class);
-            }else {
+            }else { // logic not found. Create logic and add some example data
                 logic = new Logic();
                 logic.addSubject("SoWi", "sw", "R035", "Hammes");
                 logic.addSubject("Englisch", "e", "R708", "Neuburger");
@@ -78,18 +80,17 @@ public class MainActivity extends AppCompatActivity
 
 
             }
-        }else {
+        }else { //got here from navigation drawer. Get logic from Intent
             String ls = getIntent().getStringExtra("logic");
             logic = gson.fromJson(ls, Logic.class);
         }
-
-//        Toast.makeText(this, logic.findSubject("Mathe").getName(), Toast.LENGTH_SHORT).show();
 
     }
 
     private void writeStringToFile(String s) {
         try {
-            new File(getFilesDir(), "logic").delete();
+            new File(getFilesDir(), "logic").delete(); //clear logic file
+            //write s to file
             FileOutputStream outputStream = openFileOutput("logic", Context.MODE_PRIVATE);
             outputStream.write(s.getBytes());
             outputStream.close();
@@ -110,6 +111,9 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * Close navigation drawer using back button
+     */
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -142,6 +146,11 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Implements functionality of navigation drawer.
+     * @param item selected navigation item
+     * @return successful?
+     */
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -163,6 +172,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         if(intent != null) {
+            //Pass Application logic as argument and perform Intent
             Gson gson = new Gson();
             String logicString = gson.toJson(logic);
             intent.putExtra("logic", logicString);
@@ -170,23 +180,13 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         }
-
+        //close navigation drawer, if no Intent was performed (e.g. this Activity was selected)
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
-        return true;
+        return true; //use custom animation
     }
 
-    public void createSubjectAction(View view) {
-
-        String ls = gson.toJson(logic);
-
-        Intent intent = new Intent(this, NewSubject.class);
-        intent.putExtra("logic", ls);
-        intent.putExtra("lastActivity", "main");
-        startActivity(intent);
-
-    }
-
+    //Save logic to file when Application is send to background
     @Override
     public void onTrimMemory(final int level) {
         if(level == ComponentCallbacks2.TRIM_MEMORY_UI_HIDDEN) {
@@ -195,6 +195,10 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * Delete logic file
+     * @param view calling button
+     */
     public void delete(View view) {
         File file = new File(getFilesDir(), "logic");
         file.delete();

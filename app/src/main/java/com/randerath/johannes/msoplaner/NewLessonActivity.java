@@ -19,6 +19,10 @@ import com.google.gson.Gson;
 
 import java.util.Stack;
 
+/**
+ * Activity as GUI for creating new Lesson objects.
+ */
+
 public class NewLessonActivity extends AppCompatActivity {
 
     private LinearLayout container;
@@ -39,7 +43,9 @@ public class NewLessonActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new_lesson);
         container = (LinearLayout) findViewById(R.id.newLessonContainer);
 
-        //Wochentage für Dropdown
+        //Initialize UI elements
+
+        //Feeding Spinner with possible lesson times (MSO Stundenraster)
         this.aDropdownHours = new String[] {
                 "1", "2", "3", "4", "5", "6","7","8","9","10","11","12"
         };
@@ -48,6 +54,7 @@ public class NewLessonActivity extends AppCompatActivity {
                 android.R.layout.simple_spinner_item, aDropdownHours);
         s.setAdapter(adapter);
 
+        //get logic from Intent
         Gson gson = new Gson();
         logic = gson.fromJson(getIntent().getStringExtra("logic"), Logic.class);
 
@@ -87,6 +94,7 @@ public class NewLessonActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent;
 
+                //Read data from UI inputs
                 Spinner s = (Spinner) findViewById(R.id.sLessonSubjects);
                 String text = s.getSelectedItem().toString();
                 Subject sub1=logic.findSubject(text);
@@ -122,10 +130,10 @@ public class NewLessonActivity extends AppCompatActivity {
 
 
                 if (view == done) {
+                    //save lesson and intent back
                     logic.getDay(indexDay).addLesson(sub1,intLesson);
                     intent = new Intent(NewLessonActivity.this, TimeTableActivity.class);
 
-                    //Toast User Feedback
                     Context context = getApplicationContext();
                     CharSequence charseq1 = "Dein Entwurf wurde gespeichert.";
                     int duration = Toast.LENGTH_SHORT;
@@ -133,8 +141,7 @@ public class NewLessonActivity extends AppCompatActivity {
                     toast.show();
 
                 } else /*if (view == cancel)*/{
-
-                    //Toast User Feedback
+                    // intent back without saving
                     Context context = getApplicationContext();
                     CharSequence charseq2 = "Dein Entwurf wurde verworfen.";
                     int duration = Toast.LENGTH_SHORT;
@@ -144,11 +151,12 @@ public class NewLessonActivity extends AppCompatActivity {
 
                     intent = new Intent(NewLessonActivity.this, TimeTableActivity.class);
                 }
+                //Pass logic as argument and perform Intent
                 Gson gson = new Gson();
                 intent.putExtra("logic", gson.toJson(logic));
                 intent.putExtra("lastActivity", "newLesson");
                 startActivity(intent);
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out); //use custom animation
             }
         };
     }

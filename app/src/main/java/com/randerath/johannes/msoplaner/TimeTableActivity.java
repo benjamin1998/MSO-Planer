@@ -19,6 +19,10 @@ import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.google.gson.Gson;
 
+/**
+ * Displays lessons (as LessonFragments) in lists seperated for each day of the week.
+ */
+
 public class TimeTableActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -32,10 +36,12 @@ public class TimeTableActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_table);
 
+        //get logic from Intent
         String logicString = getIntent().getExtras().getString("logic");
         Gson gson = new Gson();
         logic = gson.fromJson(logicString, Logic.class);
 
+        //Initialize UI elements
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -50,9 +56,11 @@ public class TimeTableActivity extends AppCompatActivity
 
         navigationView.getMenu().findItem(R.id.nav_timetable).setChecked(true);
 
+        //pages for the days
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
 
+        //connect pages to adapter to show fragments
         DayFragmentPagerAdapater adapter = new DayFragmentPagerAdapater(getSupportFragmentManager(), TimeTableActivity.this, logic);
 
         viewPager.setAdapter(adapter);
@@ -94,6 +102,9 @@ public class TimeTableActivity extends AppCompatActivity
         };
     }
 
+    /**
+     * use back button to close navigation drawer or FloatingActionMenu
+     */
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -149,12 +160,13 @@ public class TimeTableActivity extends AppCompatActivity
         }
 
         if(intent != null) {
+            //Pass logic as argument and perform Intent
             Gson gson = new Gson();
             String logicString = gson.toJson(logic);
             intent.putExtra("logic", logicString);
             intent.putExtra("lastActivity", "timeTable");
             startActivity(intent);
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out); //use custom animation
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

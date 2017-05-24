@@ -17,6 +17,10 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+/**
+ * Activity as GUI for creating new Task objects.
+ */
+
 public class NewTaskActivity extends AppCompatActivity {
     private Logic logic;
     private Button cancel;
@@ -31,11 +35,14 @@ public class NewTaskActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new_task);
         container = (LinearLayout) findViewById(R.id.newLessonContainer);
 
+        //get logic from Intent
         Gson gson = new Gson();
         String s = getIntent().getStringExtra("logic");
         logic = gson.fromJson(getIntent().getStringExtra("logic"), Logic.class);
 
-        // Fächer für Dropdown
+        //Initialize UI elements
+
+        // get subject names to feed Spinner
         Subject[] subjects = logic.getSubjects().toArray(new Subject[logic.getSubjects().size()]);
         names = new String[subjects.length];
         for(int i = 0; i <subjects.length; i++){
@@ -81,6 +88,7 @@ public class NewTaskActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent;
 
+                //get data from UI inputs
                 EditText t = (EditText) findViewById(R.id.tHomeDate);
                 String string1 = t.getText().toString();
 
@@ -90,6 +98,7 @@ public class NewTaskActivity extends AppCompatActivity {
                 Subject s = logic.findSubject(subjectSpinner.getSelectedItem().toString());
 
                 if (view == done) {
+                    //save Task and intent back
                     logic.addTask(s, string1, string2);
                     intent = new Intent(NewTaskActivity.this, HomeworkActivity.class);
 
@@ -101,7 +110,7 @@ public class NewTaskActivity extends AppCompatActivity {
                     toast.show();
 
                 } else /*if (view == cancel)*/{
-
+                    //intent back without saving
                     //Toast User Feedback
                     Context context = getApplicationContext();
                     CharSequence charseq2 = "Dein Entwurf wurde verworfen.";
@@ -112,11 +121,12 @@ public class NewTaskActivity extends AppCompatActivity {
 
                     intent = new Intent(NewTaskActivity.this, HomeworkActivity.class);
                 }
+                //Pass logic as argument and perform Intent
                 Gson gson = new Gson();
                 intent.putExtra("logic", gson.toJson(logic));
                 intent.putExtra("lastActivity", "newTask");
                 startActivity(intent);
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out); //use custom animation
             }
         };
     }
