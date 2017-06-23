@@ -35,7 +35,7 @@ public class NewLessonActivity extends AppCompatActivity {
     private int indexDay;
     private int intLesson;
 
-
+    //TODO: fix cancel button
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

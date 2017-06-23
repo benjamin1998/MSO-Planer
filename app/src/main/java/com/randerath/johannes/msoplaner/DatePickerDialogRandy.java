@@ -24,7 +24,6 @@ public class DatePickerDialogRandy extends DialogFragment implements android.app
     /**
      * Perform action when user chose date.
      */
-
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 

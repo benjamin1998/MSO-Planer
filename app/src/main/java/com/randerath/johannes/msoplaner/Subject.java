@@ -8,6 +8,8 @@ import android.graphics.Color;
  * Content is used in other Datatypes.
  */
 
+//TODO: use colors (as Color objects)
+
 class Subject {
 
     private int id;

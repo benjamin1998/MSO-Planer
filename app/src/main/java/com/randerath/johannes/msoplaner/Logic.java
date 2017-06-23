@@ -18,7 +18,7 @@ public class Logic {
     private Day[] days;
     private Stack<Exam> exams;
     private Stack<Task> tasks;
-    private DateFormat dateFormat;
+    //private DateFormat dateFormat;
 
     public Logic() {
 
@@ -26,7 +26,7 @@ public class Logic {
         days = new Day[] {new Day(0, "Monday"), new Day(1, "Tuesday"), new Day(2, "Wednesday"), new Day(3, "Thursday"), new Day(4, "Friday"), new Day(5, "Saturday"), new Day(6, "Sunday"), };
         exams = new Stack<>();
         tasks = new Stack<>();
-        dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        //dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 
     }
 
@@ -180,8 +180,8 @@ public class Logic {
         return getDay(day).getLessons()[index];
     }
 
-    public DateFormat getDateFormat() {
+    /*public DateFormat getDateFormat() {
         return dateFormat;
-    }
+    }*/
 
 }

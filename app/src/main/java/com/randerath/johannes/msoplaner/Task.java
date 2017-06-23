@@ -9,6 +9,7 @@ package com.randerath.johannes.msoplaner;
 class Task {
 
     private Subject subject;
+    //TODO: use actual Date objects
     private String dueDate;
     private String description;
 

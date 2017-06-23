@@ -63,8 +63,9 @@ public class MainActivity extends AppCompatActivity
                 String s = readStringFromFile();
                 logic = gson.fromJson(s, Logic.class);
             }else { // logic not found. Create logic and add some example data
+                Log.i("logic not found", "Creating logic");
                 logic = new Logic();
-                logic.addSubject("SoWi", "sw", "R035", "Hammes");
+                /*logic.addSubject("SoWi", "sw", "R035", "Hammes");
                 logic.addSubject("Englisch", "e", "R708", "Neuburger");
                 logic.addSubject("Info", "i", "R323", "Zons");
                 for(int i = 0; i < 6; i++) {
@@ -76,7 +77,7 @@ public class MainActivity extends AppCompatActivity
                 logic.addSubject("Deutsch", "d", "R135", "Heise");
                 logic.addTask(logic.getSubjects().peek(), "04/04/2017", "Analyse");
                 logic.addSubject("Mathe", "m", "R135", "Dohrn");
-                logic.addExam("30/03/2017", logic.getSubjects().peek(), "");
+                logic.addExam("30/03/2017", logic.getSubjects().peek(), "");*/
 
 
             }

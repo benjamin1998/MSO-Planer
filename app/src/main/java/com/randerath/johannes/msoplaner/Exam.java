@@ -5,6 +5,8 @@ package com.randerath.johannes.msoplaner;
  * Objects are held in the Application logic.
  * Content is used in ExamFragments to visualize Exams.
  */
+
+//TODO: use actual Date objects
 class Exam {
     private String date;
     private Subject subject;
